@@ -1,4 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiApp_test.MVVM.Models;
+using MauiApp_test.Repositories;
+using Microsoft.Extensions.Logging;
+using SQLite;
+using SQLiteNetExtensions.Extensions;
+using SQLitePCL;
 
 namespace MauiApp_test
 {
@@ -17,7 +22,10 @@ namespace MauiApp_test
 
 #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+#endif    
+            builder.Services.AddSingleton<BaseRepository<Courses>>();
+
+            SQLitePCL.Batteries_V2.Init();
 
             return builder.Build();
         }

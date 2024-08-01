@@ -4,7 +4,7 @@
 
 
     <Color x:Key="MainColor">#FF16304D</Color>
-    <Color x:Key="SecondaryColor">#9742ff</Color>
+    <Color x:Key="SecondaryColor">#0000FF</Color>
 
     <Style TargetType="Grid">
         <Setter Property="ColumnSpacing" Value="0" />
@@ -15,6 +15,12 @@
         <Setter Property="Margin" Value="-5" />
         <Setter Property="CornerRadius" Value="0,0,25,25" />
         <Setter Property="Fill" Value="{StaticResource MainColor}" />
+    </Style>
+    <Style Class="RectangleDetails" TargetType="RoundRectangle">
+   
+        <Setter Property="CornerRadius" Value="0,0,20,20" />
+        <Setter Property="Fill" Value="{StaticResource MainColor}" />
+   
     </Style>
 
     <Style Class="Header" TargetType="VerticalStackLayout">
@@ -44,7 +50,7 @@
         Brush="{StaticResource SecondaryColor}"
         Opacity="0.6"
         Radius="15"
-        Offset="0,15" />
+        Offset="0,10" />
 
     <Style Class="BalanceRectangle" TargetType="RoundRectangle">
         <Setter Property="CornerRadius" Value="10" />
