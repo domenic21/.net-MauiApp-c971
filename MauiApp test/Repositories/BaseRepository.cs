@@ -1,4 +1,5 @@
 ﻿using MauiApp_test.Abstractions;
+using MauiApp_test.MVVM.Models;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
 using System.ComponentModel;
@@ -41,7 +42,17 @@ namespace MauiApp_test.Repositories
                 StatusMessage = $"Error: {ex.Message}";
             }
         }
-
+        public void DeleteRecord(int Id)
+        {
+            try
+            {
+                connection.Execute($"DELETE FROM {typeof(T).Name} WHERE Id = ?", Id);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+        }
         public void Dispose()
         {
             connection.Close();
@@ -153,6 +164,22 @@ namespace MauiApp_test.Repositories
             return null;
         }
 
-      
+        //return all course information
+        public List<T> GetItemsById(int id)
+        {
+            try
+            {
+                return connection.Table<T>()
+                    .Where(x => x.Id == id)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
+
+
     }
 }

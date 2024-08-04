@@ -1,7 +1,5 @@
 ﻿
 using MauiApp_test.MVVM.Models;
-using SQLitePCL;
-using System.ComponentModel;
 
 namespace MauiApp_test.Data
 {
@@ -20,8 +18,9 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Active",
                 Notes = "This is a dummy course",
-                Notifications = true
-              
+                Notifications = true,
+                Term = 1
+
             };
             courses.Add(mathematicsCourse);
 
@@ -34,7 +33,8 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Inactive",
                 Notes = "This is a dummy course",
-                Notifications = true
+                Notifications = true,
+                Term = 1
             };
             courses.Add(physicsCourse);
 
@@ -47,7 +47,8 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Active",
                 Notes = "This is a dummy course",
-                Notifications = true
+                Notifications = true,
+                Term = 1
             };
             courses.Add(chemistryCourse);
 
@@ -60,7 +61,8 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Inactive",
                 Notes = "This is a dummy course",
-                Notifications = true
+                Notifications = true,
+                Term = 1
             };
             courses.Add(biologyCourse);
 
@@ -73,7 +75,8 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Active",
                 Notes = "This is a dummy course",
-                Notifications = true
+                Notifications = true,
+                Term = 1
             };
             courses.Add(computerScienceCourse);
 
@@ -86,14 +89,44 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Inactive",
                 Notes = "This is a dummy course",
-                Notifications = true
+                Notifications = true,
+                Term = 2
             };
             courses.Add(englishCourse);
-          
+
 
             return courses;
         }
-        
-      
+
+        public static List<Terms> GetTerms()
+        {
+            var terms = new List<Terms>();
+
+            var TermTest= new Terms
+            {
+              
+                Term = 3,
+                TermStart = DateTime.Now,
+                TermEnd = DateTime.Parse("12/31/2024"),
+                Status = true,
+                Notify = true,
+                TermName = "Fall 2024"
+            };
+            terms.Add(TermTest);
+
+            var Term1 = new Terms
+            {
+
+                Term = 1,
+                TermStart = DateTime.Now,
+                TermEnd = DateTime.Parse("12/31/2024"),
+                Status = true,
+                Notify = true,
+                TermName = "Fall 2025"
+            };
+            terms.Add(Term1);
+
+            return terms;
+        }
     }
 }

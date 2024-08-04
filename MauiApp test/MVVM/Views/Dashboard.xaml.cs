@@ -8,22 +8,31 @@ public partial class Dashboard : ContentPage
 	public Dashboard()
 	{
         InitializeComponent();
-		BindingContext = new DashboardViewModel();
+		BindingContext = new DashboardViewModel(); //this is the view model that is being binded to the view
+        
 
-	}
+    }
 
-    private void Delete_Clicked(object sender, EventArgs e)
+    private async void Delete_Clicked(object sender, EventArgs e)
     {
-       /* var currentVm = (DashboardViewModel)BindingContext;
-        var message = currentVm.RemoveCourse(Courses course);
-        await DisplayAlert("Save", message, "OK");*/
+        var button = sender as ImageButton;
+        var courseId = (int)button.CommandParameter;
 
+        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to delete this item?", "Yes", "No");
+        if (answer)
+        {
+            // Call the DeleteRecord method in the CoursesRepo
+            App.CoursesRepo.DeleteRecord(courseId);
+           
+            ((DashboardViewModel)BindingContext).RefreshData();
+        }
     }
 
    
 
     private void edit_Clicked(object sender, EventArgs e)
     {
+
 
     }
 
@@ -33,11 +42,19 @@ public partial class Dashboard : ContentPage
 
     }
 
-    private void edit_Clicked_1(object sender, EventArgs e)
+    private async void edit_Clicked_1(object sender, EventArgs e)
     {
-        var button = (ImageButton)sender;
-        var courseId = button.CommandParameter;
+        var button = sender as ImageButton;
+        var courseId = (int)button.CommandParameter;
 
-        //Navigation.PushAsync(new CoursesPage(courseId));
+        await Navigation.PushAsync(new EditCoursePage(courseId));
+
+
+
+    }
+
+    private async void DegreePlan_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new TermPage());
     }
 }

@@ -2,20 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_test.MVVM.Views.CoursesPage"
-             Title="CoursesPage">
-    <Grid RowDefinitions=".25*,.15*,.50*" >
+             Title="New Course">
+    <Grid RowDefinitions=".10*,.15*,.50*" >
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
-           <Label StyleClass="HeaderTitle" Text="Course name " Padding="0,20,0,0" />
+           <Label StyleClass="HeaderTitle" Text="Add new course to current Term " Padding="0,20,0,0" />
             <HorizontalStackLayout>
-            <Label StyleClass="HeaderSubTitle" Text="Course code " Padding="0,10,0,0" />
-                <Button Text="Course Instructor" Margin="70,0,10,0"/>
+                <Label StyleClass="HeaderSubTitle" Text="Term: " Padding="0,10,0,0" />
+                <Label StyleClass="HeaderSubTitle" Text="Term: " Padding="0,10,0,0" />
             </HorizontalStackLayout>
-            <Label StyleClass="HeaderSubTitle" Text="Course Activated: date " TextColor="Grey" Padding="0,2,0,0" FontSize="Medium"/>
-            
-            <Label StyleClass="HeaderSubTitle" Text="Course End Date: date " Padding="0,2,0,0" TextColor="Grey" FontSize="Medium"/>
-               
-           
         </VerticalStackLayout>
          
 
@@ -58,7 +53,7 @@
                     </Frame>
                     <!-- Optional Notes Section x:Name="NotesEntry" -->
                     <Label Text="Notes" StyleClass="MarginT15" />
-                    <Frame StyleClass="FrameBorder">
+                    <Frame StyleClass="FrameBorder" HeightRequest="100">
                         <Entry Placeholder="Enter optional notes" />
                     </Frame>
 
@@ -69,16 +64,21 @@
                         <Button Text="Delete"  />
                     </HorizontalStackLayout>
 
-                    <!-- Display Notes x:Name="NotesDisplayStack"-->
-                    <Label Text="Notes Display" StyleClass="MarginT15" />
-                    <ScrollView>
-                        <StackLayout >
-                            <!-- Dynamic note labels will be added here -->
-                            
+                    <Label Text="Instructor" StyleClass="MarginT15"/>
+                    <Frame StyleClass="FrameBorder" Margin="0,0,0,30">
+                        <Picker SelectedItem="{Binding Courses.Status}">
+                            <Picker.ItemsSource >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Active</x:String>
+                                    
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Frame>
 
-                        </StackLayout>
-                    </ScrollView>
-                            
+
+
+
 
                     <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" />
                     <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />

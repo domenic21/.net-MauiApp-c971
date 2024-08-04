@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.TermPage"
+             Title="Terms">
+    <Grid Grid.Row="3"
+         RowDefinitions=".75*,.10*,.10*" >
+
+        <ScrollView>
+            <VerticalStackLayout>
+                <CollectionView
+        x:Name="TermCollection"
+        ItemsSource="{Binding Terms}"
+        >
+
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="#E8E8E8" CornerRadius="5" Padding="10" Margin="10">
+                                <StackLayout>
+                                    <HorizontalStackLayout Spacing="20" >
+                                        <Label Text="Term:" FontSize="18" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Term}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding TermName}" FontSize="20" />
+                                    <Label Text="{Binding TermStart, StringFormat='Start: {0:MM/dd/yyyy}'}" FontSize="14" />
+                                    <Label Text="{Binding TermEnd, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="14" />
+                                    <Label Text="{Binding StatusT}" FontSize="14" />
+                                    <HorizontalStackLayout HorizontalOptions="EndAndExpand">
+                                        <Button Text="View Courses" x:Name="ViewCoursesBtn" WidthRequest="150" Margin="10" FontSize="Medium" HeightRequest="45" />
+                                        <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" Clicked="Delete_Clicked" x:Name="Delete" CommandParameter="{Binding Id}" />
+
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+              
+            </VerticalStackLayout>
+        </ScrollView>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+            <Button Text="Add Term" x:Name="AddTermBtn" WidthRequest="150" Margin="10" FontSize="Medium" HeightRequest="45" Clicked="AddTerm_Clicked" />
+        </StackLayout>
+        <!-- Footer -->
+        <StackLayout Grid.Row="2" Orientation="Horizontal" BackgroundColor="#FF16304D" HeightRequest="52">
+            <ImageButton Source="home.png" HorizontalOptions="FillAndExpand" x:Name="Home" Clicked="Home_Clicked" />
+            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor"  />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

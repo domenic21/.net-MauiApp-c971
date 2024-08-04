@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 using MauiApp_test.Abstractions;
 
 
 namespace MauiApp_test.MVVM.Models
 {
+    [Table("Assesment")]
     public  class Assesment : TableData
     {
         public Type TypeName { get; set; }

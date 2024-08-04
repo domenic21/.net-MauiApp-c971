@@ -8,12 +8,17 @@ namespace MauiApp_test
     {
         public static BaseRepository<Courses>
             CoursesRepo{ get; private set; }
+
+        public static BaseRepository<Terms>
+            TermsRepo{ get; private set; }
+
     
        
-            public App(BaseRepository<Courses> _coursesRepo)
+            public App(BaseRepository<Courses> _coursesRepo , BaseRepository<Terms> _termsRepo)
             {
                 InitializeComponent();
                  CoursesRepo = _coursesRepo;
+                 TermsRepo = _termsRepo;
                 MainPage = new NavigationPage(root: new Dashboard());
             }
         

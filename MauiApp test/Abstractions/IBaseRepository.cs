@@ -20,5 +20,8 @@ namespace MauiApp_test.Abstractions
         List<T> GetItemsWithChildren();
         void DeleteItem(T item);
 
+        void DeleteRecord(int id);
+        List<T>GetItemsById(int id);
+
     }
 }

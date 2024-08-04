@@ -1,13 +1,11 @@
 ﻿using MauiApp_test.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
+
 
 
 namespace MauiApp_test.MVVM.Models
 {
+    [Table("Instructor")]
     public class Instructor : TableData
     {
       

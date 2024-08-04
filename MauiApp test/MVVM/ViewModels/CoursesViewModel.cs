@@ -19,13 +19,13 @@ namespace MauiApp_test.MVVM.ViewModels
 
         //dummy data courses 
 
-       public static void AddCourses()
+        public static void AddCourses()
         {
 
             foreach (var course in DummyData.GetCourses())
             {
                 App.CoursesRepo.SaveItem(course);
-        
+
             }
         }
 

@@ -1,12 +1,20 @@
 ﻿using MauiApp_test.Abstractions;
+using SQLite;
+
 namespace MauiApp_test.MVVM.Models
 {
+    [Table("Terms")]
     public class Terms : TableData
     {
 
-        public string termName { get; set; }
-        public DateTime termStart { get; set; }
-        public DateTime termEnd { get; set; }
+        public int Term { get; set; }
+
+        public string TermName { get; set; }
+        public DateTime TermStart { get; set; }
+        public DateTime TermEnd { get; set; }
+
+        public bool Notify { get; set; }
+        public bool Status { get; set; }
 
     }
 }

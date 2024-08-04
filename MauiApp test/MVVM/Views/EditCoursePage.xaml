@@ -6,14 +6,14 @@
     <Grid RowDefinitions=".25*,.15*,.50*" >
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
-            <Label StyleClass="HeaderTitle" Text="Course name " Padding="0,20,0,0" />
+            <Label StyleClass="HeaderTitle" x:Name="Name" Text="{Binding Courses.Name}" Padding="0,20,0,0" TextColor="White" FontSize="Large" />
             <HorizontalStackLayout>
-                <Label StyleClass="HeaderSubTitle" Text="Course code " Padding="0,10,0,0" />
+                <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.Id} " Padding="0,10,140,0" />
                 <Button Text="Course Instructor" Margin="70,0,10,0"/>
             </HorizontalStackLayout>
-            <Label StyleClass="HeaderSubTitle" Text="Course Activated: date " TextColor="Grey" Padding="0,2,0,0" FontSize="Medium"/>
+            <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" TextColor="Grey" Padding="0,2,0,0" FontSize="Medium"/>
 
-            <Label StyleClass="HeaderSubTitle" Text="Course End Date: date " Padding="0,2,0,0" TextColor="Grey" FontSize="Medium"/>
+            <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'} " Padding="0,2,0,0" TextColor="Grey" FontSize="Medium"/>
 
 
         </VerticalStackLayout>
@@ -21,13 +21,13 @@
 
         <Grid Grid.Row="1"
            Grid.RowSpan="2"
-             StyleClass="BalanceGrid"  >
+             StyleClass="BalanceGrid">
             <RoundRectangle StyleClass="BalanceRectangle" />
             <ScrollView>
                 <VerticalStackLayout Spacing="10" StyleClass="Padding25" >
                     <Label Text="Course Name" />
                     <Frame StyleClass="FrameBorder">
-                        <Entry Placeholder="Enter Course Name" Text="{Binding Courses.Name}"/>
+                        <Entry Placeholder="{Binding Courses.Name}"/>
                     </Frame>
                     <Label Text=" Start Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
@@ -41,7 +41,7 @@
 
                     </Frame>
                     <HorizontalStackLayout Spacing="5" >
-                        <CheckBox IsChecked="{Binding Courses.Notification}" />
+                        <CheckBox IsChecked="{Binding Courses.Notification}" x:Name="Notification"  />
                         <Label Text="Notification?" Margin="10" />
                     </HorizontalStackLayout>
 
@@ -58,9 +58,10 @@
                     </Frame>
                     <!-- Optional Notes Section x:Name="NotesEntry" -->
                     <Label Text="Notes" StyleClass="MarginT15" />
-                    <Frame StyleClass="FrameBorder">
-                        <Entry Placeholder="Enter optional notes" />
+                    <Frame StyleClass="FrameBorder" HeightRequest="100">
+                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" />
                     </Frame>
+                    
 
                     <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
                     <HorizontalStackLayout Spacing="10"  >
@@ -68,20 +69,24 @@
                         <Button Text="Share "  />
                         <Button Text="Delete"  />
                     </HorizontalStackLayout>
+                     <!--instructor picker-->
+                    <Label Text="Course Instructor" StyleClass="MarginT15"/>
+                    <Frame StyleClass="FrameBorder">
+                        <Picker SelectedItem="{Binding Courses.Instructor}">
+                            <Picker.ItemsSource  >
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>John Doe</x:String>
+                                    <x:String>Jane Doe</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Frame>
 
-                    <!-- Display Notes x:Name="NotesDisplayStack"-->
-                    <Label Text="Notes Display" StyleClass="MarginT15" />
-                    <ScrollView>
-                        <StackLayout >
-                            <!-- Dynamic note labels will be added here -->
 
 
-                        </StackLayout>
-                    </ScrollView>
 
-
-                    <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" />
-                    <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
+                    <Button Text="Save" x:Name="Save" />
+                    <Button Text="Cancel" x:Name="Cancel"  />
                     <Button Text="Delete Course" Background="red" x:Name="Delete"  />
 
                 </VerticalStackLayout>

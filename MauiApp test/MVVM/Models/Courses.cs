@@ -1,12 +1,9 @@
 ﻿using MauiApp_test.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
 namespace MauiApp_test.MVVM.Models
 {
+    [Table("Courses")]
     public class Courses : TableData
     {
 
@@ -18,10 +15,11 @@ namespace MauiApp_test.MVVM.Models
         public string Status { get; set; }
         public string Notes { get; set; }
 
+        public int Term { get; set; } 
         public bool Notifications { get; set; }
 
         //instructor info
-        public string InstructorId { get; set; }
+        public int InstructorId { get; set; }
         public string InstructorPhone { get; set; }
         public string InstructorName { get; set; }
 
