@@ -25,7 +25,7 @@ namespace MauiApp_test.Repositories
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error initializing database: {ex.Message}";
+                StatusMessage = $"Error initializing database: {ex.Message} ";
                 throw; // Optionally rethrow to detect during testing
             }
         }

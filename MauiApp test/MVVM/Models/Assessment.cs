@@ -4,8 +4,8 @@ using MauiApp_test.Abstractions;
 
 namespace MauiApp_test.MVVM.Models
 {
-    [Table("Assesment")]
-    public  class Assesment : TableData
+    [Table("Assessment")]
+    public  class Assessment : TableData
     {
         public Type TypeName { get; set; }
         public string Name { get; set; }

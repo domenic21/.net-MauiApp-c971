@@ -48,6 +48,7 @@ public partial class Dashboard : ContentPage
         var courseId = (int)button.CommandParameter;
 
         await Navigation.PushAsync(new EditCoursePage(courseId));
+       
 
 
 
@@ -56,5 +57,6 @@ public partial class Dashboard : ContentPage
     private async void DegreePlan_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new TermPage());
+        
     }
 }

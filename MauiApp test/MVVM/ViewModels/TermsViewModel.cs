@@ -1,21 +1,25 @@
 ﻿
 using MauiApp_test.Data;
 using MauiApp_test.MVVM.Models;
+using PropertyChanged;
 using System.Collections.ObjectModel;
 
 namespace MauiApp_test.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class TermsViewModel
     {
         public ObservableCollection<Terms> Terms { get; set; }
 
-   
+      
+
+
         public TermsViewModel()
         {
            FillData();
             Removeduplicates();
            GetTerms();
-           // RefreshData();
+           RefreshData();
            
         }
 
@@ -74,6 +78,8 @@ namespace MauiApp_test.MVVM.ViewModels
                 Terms.Remove(term);
             }
         }
+
+        
 
 
     }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_test.MVVM.Views.CoursesPage"
              Title="New Course">
+    
     <Grid RowDefinitions=".10*,.15*,.50*" >
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
@@ -64,7 +65,7 @@
                         <Button Text="Delete"  />
                     </HorizontalStackLayout>
 
-                    <Label Text="Instructor" StyleClass="MarginT15"/>
+                   <!-- <Label Text="Instructor" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder" Margin="0,0,0,30">
                         <Picker SelectedItem="{Binding Courses.Status}">
                             <Picker.ItemsSource >
@@ -75,6 +76,7 @@
                             </Picker.ItemsSource>
                         </Picker>
                     </Frame>
+                    -->
 
 
 

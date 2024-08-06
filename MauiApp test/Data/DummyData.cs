@@ -102,13 +102,13 @@ namespace MauiApp_test.Data
         {
             var terms = new List<Terms>();
 
-            var TermTest= new Terms
+            var TermTest = new Terms
             {
-              
+
                 Term = 3,
                 TermStart = DateTime.Now,
                 TermEnd = DateTime.Parse("12/31/2024"),
-                Status = true,
+                Status = "Active",
                 Notify = true,
                 TermName = "Fall 2024"
             };
@@ -120,7 +120,7 @@ namespace MauiApp_test.Data
                 Term = 1,
                 TermStart = DateTime.Now,
                 TermEnd = DateTime.Parse("12/31/2024"),
-                Status = true,
+                Status = "Active",
                 Notify = true,
                 TermName = "Fall 2025"
             };
@@ -128,5 +128,20 @@ namespace MauiApp_test.Data
 
             return terms;
         }
+
+        public static List<Instructor> AddInstructors()
+        {
+            var instructors = new List<Instructor>();
+
+            var instructor1 = new Instructor
+            {
+                InstructorName = "Mr. John Doe",
+
+            };
+            instructors.Add(instructor1);
+            return instructors;
+        }
+
+
     }
 }

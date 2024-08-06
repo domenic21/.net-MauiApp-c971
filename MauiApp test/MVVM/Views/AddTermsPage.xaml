@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.AddTermsPage"
+             Title="AddTermsPage">
+
+    <Grid>
+        <VerticalStackLayout>
+            <Label Text="Add New Term" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0"/>
+
+
+            <Frame BackgroundColor="#E8E8E8" CornerRadius="5" Padding="10" Margin="15">
+                <StackLayout>
+                    <Label Text="Term Name" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Term Name" FontSize="18"  Text="{Binding Terms.TermName }"/>
+                    <Label Text="Term #" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Enter Term #" FontSize="18" Text="{Binding Terms.Term}" Keyboard="Numeric"/>
+                    <Label Text="Start Date" FontSize="18" FontAttributes="Bold"/>
+                    <DatePicker  Date="{Binding Terms.TermStart }" />
+                    <Label Text="End Date" FontSize="18" FontAttributes="Bold"/>
+                    <DatePicker  Date="{Binding Terms.TermEnd}"/>
+                    <Label Text="Status" FontSize="18" FontAttributes="Bold"/>
+                    <Picker   SelectedIndex="{Binding Terms.Status }">
+                        <Picker.ItemsSource >
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>Active</x:String>
+                                <x:String>Inactive</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+
+                    </Picker>
+                    <HorizontalStackLayout Spacing="0">
+                        <Label Text="Notifications" FontSize="18" FontAttributes="Bold" />
+                        <Switch  Margin="20,-10,0,0"  IsToggled="{Binding Terms.Notify}"
+                                     />
+                    </HorizontalStackLayout>
+
+                    <Button Text="Save" x:Name="Save" WidthRequest="150" Margin="10" FontSize="Medium" HeightRequest="45" Clicked="Save_Clicked"/>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </Grid>
+
+
+
+</ContentPage>

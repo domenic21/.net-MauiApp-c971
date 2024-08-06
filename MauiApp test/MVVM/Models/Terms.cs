@@ -14,7 +14,7 @@ namespace MauiApp_test.MVVM.Models
         public DateTime TermEnd { get; set; }
 
         public bool Notify { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
 
     }
 }

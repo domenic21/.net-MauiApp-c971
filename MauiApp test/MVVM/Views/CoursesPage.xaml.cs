@@ -9,7 +9,7 @@ public partial class CoursesPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new CoursesViewModel();
-        AddingCourses();
+        //AddingCourses();
 
 
     }

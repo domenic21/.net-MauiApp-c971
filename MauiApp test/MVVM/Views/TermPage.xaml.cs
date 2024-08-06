@@ -1,4 +1,5 @@
 using MauiApp_test.MVVM.ViewModels;
+
 namespace MauiApp_test.MVVM.Views;
 
 public partial class TermPage : ContentPage
@@ -27,13 +28,22 @@ public partial class TermPage : ContentPage
         }
     }
 
-    private void AddTerm_Clicked(object sender, EventArgs e)
+    private async  void AddTerm_Clicked(object sender, EventArgs e)
     {
+        await Navigation.PushAsync(new AddTermsPage());
 
     }
 
     private async void Home_Clicked(object sender, EventArgs e)
     {
-       await Navigation.PushAsync(new Dashboard());
+       
+     
+       await Navigation.PopToRootAsync();
+        Navigation.RemovePage(this);
+
+     
+        
+       
+
     }
 }

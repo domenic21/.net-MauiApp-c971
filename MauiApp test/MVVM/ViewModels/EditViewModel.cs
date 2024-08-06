@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using MauiApp_test.MVVM.Models;
-using PropertyChanged;
-using MauiApp_test.MVVM.ViewModels;
+using MauiApp_test.Data;
+
+using System.Collections.ObjectModel;
 
 namespace MauiApp_test.MVVM.ViewModels
 {
@@ -16,9 +11,15 @@ namespace MauiApp_test.MVVM.ViewModels
     {
         public Courses Courses { get; set; }
 
+        public ObservableCollection<Instructor> Instructors { get; set; }
+     
+
         public EditViewModel(int Id)
         {
             GetCourses(Id);
+            AddInstructors();
+            Instructors = new ObservableCollection<Instructor>(App.InstructorRepo.GetItems());
+            Removeduplicates();
         }
 
         public void GetCourses(int Id)
@@ -35,11 +36,40 @@ namespace MauiApp_test.MVVM.ViewModels
             }
            
         }
+        private void AddInstructors()
+        {
+            foreach (var instructor in DummyData.AddInstructors())
+            {
+                App.InstructorRepo.SaveItem(instructor);
+            }
+        }
 
         public string SaveCourse()
         {
             App.CoursesRepo.SaveItem(Courses);
             return App.CoursesRepo.StatusMessage;
         }
+
+        public void DeleteCourse()
+        {
+            App.CoursesRepo.DeleteItem(Courses);
+        }
+        public void RemoveInstructor(Instructor instructor)
+        {
+            App.InstructorRepo.DeleteItem(instructor);
+            Instructors.Remove(instructor);
+            
+        }
+        private void Removeduplicates()
+        {
+            var duplicates = Instructors.GroupBy(i => i.InstructorName)//group by name
+                .Where(g => g.Count() > 1)//if there are more than one
+                .SelectMany(g => g.Skip(1));//skip the first one
+            foreach (var Instructors in duplicates)//remove the duplicates
+            {
+                RemoveInstructor(Instructors);
+            }
+        }
+
     }
 }
