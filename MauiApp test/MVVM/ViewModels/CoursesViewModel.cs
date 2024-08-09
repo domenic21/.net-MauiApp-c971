@@ -10,12 +10,17 @@ namespace MauiApp_test.MVVM.ViewModels
             StartDate = DateTime.Now,
             EndDate = DateTime.Now
         };
+        public CoursesViewModel(int term)
+        {
+            this.Term = Term;
 
+        }
         public string SaveCourse()
         {
             App.CoursesRepo.SaveItem(Courses);
             return App.CoursesRepo.StatusMessage;
         }
+        public int Term { get; set; }
 
         //dummy data courses 
 

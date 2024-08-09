@@ -11,7 +11,7 @@
         
         <HorizontalStackLayout  HorizontalOptions="CenterAndExpand" Grid.Row="0" >
             <Label Text="Term" FontSize="25" FontAttributes="Bold" TextColor="DarkOrange" />
-            <Label Text="{Binding Term}" FontSize="25" Margin="10,1,0,0" FontAttributes="Bold" TextColor="DarkOrange"/>
+            <Label Text="{Binding Term}" x:Name="TermNum" FontSize="25" Margin="10,1,0,0" FontAttributes="Bold" TextColor="DarkOrange"/>
         </HorizontalStackLayout>
         <CollectionView ItemsSource="{Binding CourseList}" Grid.Row="1" >
             <CollectionView.ItemsLayout>
@@ -35,9 +35,11 @@
 
                             </HorizontalStackLayout>
                              <!-- If the course is not available -->
-
+                            
                             <Button Text="Add Course" 
                                    x:Name="AddCourse" 
+                                    CommandParameter="{Binding Term}"
+                                   
                                 IsVisible="{Binding IsButtonVisible}" Clicked="AddCourse_Clicked" />
 
 

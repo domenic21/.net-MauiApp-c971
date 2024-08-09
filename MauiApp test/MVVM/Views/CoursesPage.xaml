@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_test.MVVM.Views.CoursesPage"
+                xmlns:local="clr-namespace:MauiApp_test.MVVM.ViewModels"
+             
              Title="New Course">
     
     <Grid RowDefinitions=".10*,.15*,.50*" >
@@ -10,7 +12,7 @@
            <Label StyleClass="HeaderTitle" Text="Add new course to current Term " Padding="0,20,0,0" />
             <HorizontalStackLayout>
                 <Label StyleClass="HeaderSubTitle" Text="Term: " Padding="0,10,0,0" />
-                <Label StyleClass="HeaderSubTitle" Text="Term: " Padding="0,10,0,0" />
+                <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.Term}"  Padding="0,10,0,0" x:Name="Termlbl" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
          
@@ -24,6 +26,12 @@
                     <Label Text="Course Name" />
                     <Frame StyleClass="FrameBorder">
                         <Entry Placeholder="Enter Course Name" Text="{Binding Courses.Name}"/>
+                        
+                    </Frame>
+                    <Label Text="Term" StyleClass="MarginT15"/>
+                    <Frame StyleClass="FrameBorder">
+                        <Entry Placeholder="Enter Course Name" Text="{Binding Courses.Term}" x:Name="termEntry"/>
+
                     </Frame>
                     <Label Text=" Start Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
@@ -52,39 +60,12 @@
                             </Picker.ItemsSource>
                         </Picker>
                     </Frame>
-                    <!-- Optional Notes Section x:Name="NotesEntry" -->
-                    <Label Text="Notes" StyleClass="MarginT15" />
-                    <Frame StyleClass="FrameBorder" HeightRequest="100">
-                        <Entry Placeholder="Enter optional notes" />
-                    </Frame>
-
-                    <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
-                    <HorizontalStackLayout Spacing="10"  >
-                        <Button Text="Add "  />
-                        <Button Text="Share "  />
-                        <Button Text="Delete"  />
-                    </HorizontalStackLayout>
-
-                   <!-- <Label Text="Instructor" StyleClass="MarginT15"/>
-                    <Frame StyleClass="FrameBorder" Margin="0,0,0,30">
-                        <Picker SelectedItem="{Binding Courses.Status}">
-                            <Picker.ItemsSource >
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Active</x:String>
-                                    
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
-                    </Frame>
-                    -->
-
-
-
+                   
 
 
                     <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" />
                     <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
-                    <Button Text="Delete Course" Background="red" x:Name="Delete"  />
+                   
                    
                 </VerticalStackLayout>
             </ScrollView>

@@ -5,11 +5,14 @@ namespace MauiApp_test.MVVM.Views;
 
 public partial class CoursesPage : ContentPage
 {
-    public CoursesPage()
+    public CoursesPage(int Term)
     {
         InitializeComponent();
-        BindingContext = new CoursesViewModel();
-        //AddingCourses();
+        BindingContext = new CoursesViewModel( Term);
+        Termlbl.Text = Term.ToString();
+        termEntry.Text = Term.ToString();
+
+        
 
 
     }

@@ -9,7 +9,7 @@
     <Grid RowDefinitions=".10*,.10*,.60*,.10*">
         <RoundRectangle Grid.RowSpan=" 2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
-            <Label FontSize="35" Text="Hello, Student " />
+            <Label FontSize="35" Text="Hello, Student " TextColor="White"/>
         </VerticalStackLayout>
        
         <Grid Grid.Row="2"

@@ -16,12 +16,12 @@ namespace MauiApp_test.MVVM.ViewModels
         public DetailsCourseViewModel(int Term)
         {
             this.Term = Term;
-            FillData();
+            FillData(Term);
 
             LimitCourseList();
         }
 
-        private void FillData()
+        private void FillData(int Term)
         {
             var courses = App.CoursesRepo.GetItemsByTerm(Term);
             courses = courses.OrderBy(c => c.Status).ToList();
@@ -41,7 +41,8 @@ namespace MauiApp_test.MVVM.ViewModels
                 CourseList.Add(new Courses
                 {
                     HasCourse = false, // No course present
-                    IsButtonVisible = true// Show button only on the first empty slot
+                    IsButtonVisible = true,// Show button only on the first empty slot
+                    Term = Term
                 });
             }
         }

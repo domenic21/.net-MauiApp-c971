@@ -27,7 +27,24 @@ public partial class DetailsCoursePage : ContentPage
 
     private  async void AddCourse_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new CoursesPage());
+        Button button = (Button)sender;
+
+        // Check if CommandParameter is not null and is of type int
+        if (button.CommandParameter is int term)
+        {
+            // Pass the term to the CoursesPage
+            await Navigation.PushAsync(new CoursesPage(term));
+
+            // Optionally remove the current page from navigation stack
+            Navigation.RemovePage(this);
+        }
+        else
+        {
+            // Handle the case where the CommandParameter is not an int
+            await DisplayAlert("Error", "Invalid course ID", "OK");
+        }
+
+
 
     }
 
