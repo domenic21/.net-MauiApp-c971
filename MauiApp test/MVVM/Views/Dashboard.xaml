@@ -9,13 +9,12 @@
     <Grid RowDefinitions=".10*,.10*,.60*,.10*">
         <RoundRectangle Grid.RowSpan=" 2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
-            <Label StyleClass="HeaderTitle" Text="Hello, Student " />
-            <Label StyleClass="HeaderSubTitle" Text="Student Name " />
+            <Label FontSize="35" Text="Hello, Student " />
         </VerticalStackLayout>
        
         <Grid Grid.Row="2"
               RowDefinitions=".15*,.10*,.85*" >
-            <Label Text="Courses" StyleClass="StrongTitle" Margin="10,40,0,0" />
+            <Label Text="All Courses" StyleClass="StrongTitle" Margin="10,40,0,0" />
            
             <CollectionView Grid.Row="3"
                             

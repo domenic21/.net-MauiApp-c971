@@ -27,10 +27,6 @@ namespace MauiApp_test.MVVM.ViewModels
 
             Removeduplicates();
             
-            
-
-
-
         }
 
         private void FillData()
@@ -67,17 +63,7 @@ namespace MauiApp_test.MVVM.ViewModels
             }
         }
 
-        public List<Courses> GetTermsCourses(int Term)
-        {
-            var coursesTerm = App.CoursesRepo.GetItems()
-                .Where(c => c.Term == Term) // Filter courses by the specified term
-                .OrderBy(c => c.Term)
-                .ToList();
-
-            Courses = new ObservableCollection<Courses>(coursesTerm);
-
-            return coursesTerm; // Return the filtered courses
-        }
+      
 
         public void RefreshData()
         {

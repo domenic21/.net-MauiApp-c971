@@ -22,6 +22,7 @@ namespace MauiApp_test.Abstractions
 
         void DeleteRecord(int id);
         List<T>GetItemsById(int id);
+        List<T> GetItemsByTerm(int Term);
 
     }
 }

@@ -36,14 +36,30 @@ public partial class TermPage : ContentPage
 
     private async void Home_Clicked(object sender, EventArgs e)
     {
-       
-     
+
        await Navigation.PopToRootAsync();
         Navigation.RemovePage(this);
 
-     
-        
+    }
+
+    private async void ViewCoursesBtn_Clicked(object sender, EventArgs e)
+    {
+        var button = (Button)sender;
+        if (button.CommandParameter is int Term) // Check if the CommandParameter is an int and assign it to the variable  Term
+        {
+            await Navigation.PushAsync(new DetailsCoursePage(Term));
        
+            Navigation.RemovePage(this);
+        }
+        else
+        {
+            // Handle the case where the CommandParameter is not an int
+            await DisplayAlert("Error", "Invalid course ID", "OK");
+        }
+
+
+
+
 
     }
 }

@@ -180,6 +180,19 @@ namespace MauiApp_test.Repositories
             return null;
         }
 
-
+        public List<T> GetItemsByTerm(int Term)
+        {
+            try
+            {
+                return connection.Query<T>($"SELECT * FROM Courses WHERE Term = {Term}");
+               
+                  
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+            return null;
+        }
     }
 }

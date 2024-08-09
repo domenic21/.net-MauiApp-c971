@@ -25,6 +25,9 @@ namespace MauiApp_test.MVVM.Models
         // Navigation property to access the related Instructor object
         [Ignore] // Ignore this property during database operations
         public Instructor Instructors { get; set; }
+        public bool HasCourse { get; set; } = true;
+
+        public bool IsButtonVisible { get; set; }
     }
 
 

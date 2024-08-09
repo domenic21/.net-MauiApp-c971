@@ -27,7 +27,7 @@
                                     <Label Text="{Binding TermEnd, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="14" />
                                     <Label Text="{Binding StatusT}" FontSize="14" />
                                     <HorizontalStackLayout HorizontalOptions="EndAndExpand">
-                                        <Button Text="View Courses" x:Name="ViewCoursesBtn" WidthRequest="150" Margin="10" FontSize="Medium" HeightRequest="45" />
+                                        <Button Text="View Courses" WidthRequest="150" Margin="10" FontSize="Medium" HeightRequest="45" CommandParameter="{Binding Term}"  Clicked="ViewCoursesBtn_Clicked"/>
                                         <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" Clicked="Delete_Clicked" x:Name="Delete" CommandParameter="{Binding Id}" />
 
                                     </HorizontalStackLayout>

@@ -135,7 +135,9 @@ namespace MauiApp_test.Data
 
             var instructor1 = new Instructor
             {
-                InstructorName = "Mr. John Doe",
+                InstructorName = "Anika Patel",
+                InstructorPhone = "555-123-4567",
+                InstructorEmail = "anika.patel@strimeuniversity.edu"
 
             };
             instructors.Add(instructor1);

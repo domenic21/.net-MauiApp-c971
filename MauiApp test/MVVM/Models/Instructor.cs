@@ -16,7 +16,7 @@ namespace MauiApp_test.MVVM.Models
         public Courses Course { get; set; } // Navigation property
 
         public string InstructorName { get; set; }
-        public string instructorPhone { get; set; }
-        public string instructorEmail { get; set; }
+        public string InstructorPhone { get; set; }
+        public string InstructorEmail { get; set; }
     }
 }
