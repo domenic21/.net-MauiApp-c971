@@ -55,9 +55,9 @@
         </Grid>
         <!-- Footer -->
         <StackLayout Grid.Row="4" Orientation="Horizontal" BackgroundColor="#FF16304D" HeightRequest="52">
-            <ImageButton Source="home.png" HorizontalOptions="FillAndExpand" x:Name="Home" Clicked="Home_Clicked" />
+
             <ImageButton Source="plan.png" HorizontalOptions="FillAndExpand" x:Name="DegreePlan" Clicked="DegreePlan_Clicked" />
-            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor"  />
+            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor" Clicked="Instructor_Clicked" />
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -7,10 +7,7 @@
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
             <Label StyleClass="HeaderTitle" x:Name="Name" Text="{Binding Courses.Name}" Padding="0,20,0,0" TextColor="White" FontSize="Large" />
-            <HorizontalStackLayout>
-                <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.Id} " Padding="0,10,140,0" />
-                <Button Text="Course Instructor" Margin="70,0,10,0"/>
-            </HorizontalStackLayout>
+            <Label StyleClass="HeaderTitle" x:Name="Id"  Text="{Binding Courses.Id}" Padding="0,20,0,0" TextColor="White" FontSize="Large" />
             <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" TextColor="Grey" Padding="0,2,0,0" FontSize="Medium"/>
 
             <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'} " Padding="0,2,0,0" TextColor="Grey" FontSize="Medium"/>
@@ -27,17 +24,25 @@
                 <VerticalStackLayout Spacing="10" StyleClass="Padding25" >
                     <Label Text="Course Name" />
                     <Frame StyleClass="FrameBorder">
-                        <Entry Text="{Binding Courses.Name}"/>
+                        <Entry Text="{Binding Courses.Name}" x:Name="CourseName"/>
+                    </Frame>
+                    <Label Text="Course Code" />
+                    <Frame StyleClass="FrameBorder">
+                        <Entry Text="{Binding Courses.CourseCode}" x:Name="CourseCode"/>
                     </Frame>
                     <Label Text=" Start Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
-                        <DatePicker  Date="{Binding Courses.StartDate}"/>
+                        <DatePicker  Date="{Binding Courses.StartDate} " x:Name="StartDate"/>
 
+                    </Frame>
+                    <Label Text="Term" />
+                    <Frame StyleClass="FrameBorder">
+                        <Entry Text="{Binding Courses.Term}" x:Name="Term" Keyboard="Numeric"/>
                     </Frame>
 
                     <Label Text="End Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
-                        <DatePicker Date="{Binding Courses.EndDate}"/>
+                        <DatePicker Date="{Binding Courses.EndDate}" x:Name="EndDate"/>
 
                     </Frame>
                     <HorizontalStackLayout Spacing="5" >
@@ -47,7 +52,7 @@
 
                     <Label Text="Course Status" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
-                        <Picker SelectedItem="{Binding Courses.Status}">
+                        <Picker SelectedItem="{Binding Courses.Status}" x:Name="Status">
                             <Picker.ItemsSource >
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>Active</x:String>
@@ -76,16 +81,16 @@
                         <Picker ItemsSource="{Binding Instructors}"
                        ItemDisplayBinding="{Binding InstructorName}"
                           SelectedItem="{Binding Courses.InstructorName}"
-                        FontSize="Medium" /> 
+                        FontSize="Medium" x:Name="Instructor" /> 
                     
                     </Frame>
 
 
 
 
-                    <Button Text="Save" x:Name="Save" Clicked="Save_Clicked" />
+                    <Button Text="Save" x:Name="Save" Clicked="Save_Clicked"/>
                     <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
-                    <Button Text="Delete Course" Background="red" x:Name="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding Id}" />
+                    <Button Text="Delete Course" Background="red" Clicked="Delete_Clicked" CommandParameter="{Binding Courses.Id}" />
 
                 </VerticalStackLayout>
             </ScrollView>

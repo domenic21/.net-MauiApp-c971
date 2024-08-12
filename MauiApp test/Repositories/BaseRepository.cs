@@ -194,5 +194,23 @@ namespace MauiApp_test.Repositories
             }
             return null;
         }
+        // Update item in the Courses table by Id sql query 
+        public void UpdateItem(int Id, string name, string courseCode, string instructor, DateTime startDate, DateTime endDate, string status, int term, bool notifications)
+        {
+            try
+            {
+                connection.Execute($"UPDATE Courses SET Name = ?, CourseCode = ?, Instructor = ?, StartDate = ?, EndDate = ?, Status = ?, Term = ?, Notifications = ? WHERE Id = {Id}",
+                    name, courseCode, instructor, startDate, endDate, status, term, notifications);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: {ex.Message}";
+            }
+        }
+
+       
+        
+
+        
     }
 }

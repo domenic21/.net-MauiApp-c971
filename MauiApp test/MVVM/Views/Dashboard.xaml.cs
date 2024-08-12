@@ -59,4 +59,9 @@ public partial class Dashboard : ContentPage
         await Navigation.PushAsync(new TermPage());
         
     }
+
+    private async void Instructor_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new InstructorPage());
+    }
 }

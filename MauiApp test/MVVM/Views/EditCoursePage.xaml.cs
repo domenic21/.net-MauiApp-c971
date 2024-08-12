@@ -1,3 +1,5 @@
+
+
 using MauiApp_test.MVVM.Models;
 using MauiApp_test.MVVM.ViewModels;
 
@@ -18,12 +20,14 @@ public partial class EditCoursePage : ContentPage
       
     }
 
-    private void Save_Clicked(object sender, EventArgs e)
+    private async  void Save_Clicked(object sender, EventArgs e)
     {
         var currentVm = (EditViewModel)BindingContext;
         var message = currentVm.SaveCourse();
-        DisplayAlert("Save", message, "OK");
-        Navigation.PushAsync(new Dashboard());
+        await DisplayAlert("Save", message, "OK");
+        await Navigation.PushAsync(new Dashboard());
+
+        Navigation.RemovePage(this);
 
     }
 
@@ -39,16 +43,18 @@ public partial class EditCoursePage : ContentPage
 
     private async void Delete_Clicked(object sender, EventArgs e)
     {
-        var button = sender as ImageButton;
-        var courseId = (int)button.CommandParameter;
+       
+        var courseId = Id.Text;
 
         bool answer = await DisplayAlert("Confirmation", "Are you sure you want to delete this item?", "Yes", "No");
         if (answer)
         {
-            // Call the DeleteRecord method in the CoursesRepo
-            App.CoursesRepo.DeleteRecord(courseId);
+           
+            App.CoursesRepo.DeleteRecord(Convert.ToInt32(courseId));
 
-            ((DashboardViewModel)BindingContext).RefreshData();
+            //  ((DashboardViewModel)BindingContext).RefreshData();
+            await Navigation.PushAsync(new Dashboard());
+            Navigation.RemovePage(this);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace MauiApp_test.MVVM.ViewModels
 
         public ObservableCollection<Instructor> Instructors { get; set; }
      
-
+        public int Id { get; set; }
         public EditViewModel(int Id)
         {
             GetCourses(Id);
@@ -44,11 +44,9 @@ namespace MauiApp_test.MVVM.ViewModels
             }
         }
 
-        public string SaveCourse()
-        {
-            App.CoursesRepo.SaveItem(Courses);
-            return App.CoursesRepo.StatusMessage;
-        }
+       
+      
+  
 
         public void DeleteCourse()
         {
@@ -69,6 +67,12 @@ namespace MauiApp_test.MVVM.ViewModels
             {
                 RemoveInstructor(Instructors);
             }
+        }
+
+        public string SaveCourse()
+        {
+            App.CoursesRepo.SaveItem(Courses);
+            return App.CoursesRepo.StatusMessage;
         }
 
     }
