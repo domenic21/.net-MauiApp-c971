@@ -17,7 +17,7 @@ namespace MauiApp_test.MVVM.ViewModels
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
 
-        public Courses CurrentCourse { get; set; }
+    
 
         public int Id { get; set; }
         public DashboardViewModel()

@@ -55,28 +55,11 @@ namespace MauiApp_test.MVVM.ViewModels
 
         public void RefreshData()
         {
-            var newTerms = App.TermsRepo.GetItems();
-            newTerms = newTerms.OrderBy(t => t.Term).ToList();
-
-            // Update existing terms or add new terms
-            foreach (var term in newTerms)
-            {
-                var existingTerm = Terms.FirstOrDefault(t => t.Id == term.Id);
-                if (existingTerm != null)
-                {
-                    // Update existing term
-                    existingTerm.Term = term.Term;
-                   
-                }
-             
-            }
-
-            // Remove terms that no longer exist
-            var removedTerms = Terms.Where(t => !newTerms.Any(nt => nt.Id == t.Id)).ToList();
-            foreach (var term in removedTerms)
-            {
-                Terms.Remove(term);
-            }
+           //clear the list
+            Terms.Clear();
+            //add the items
+            Terms = new ObservableCollection<Terms>(App.TermsRepo.GetItems());
+            Removeduplicates();
         }
 
         

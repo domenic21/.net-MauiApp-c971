@@ -28,6 +28,8 @@ public partial class EditCoursePage : ContentPage
         await Navigation.PushAsync(new Dashboard());
 
         Navigation.RemovePage(this);
+    
+      
 
     }
 

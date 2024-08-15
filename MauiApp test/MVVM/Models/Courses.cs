@@ -20,7 +20,7 @@ namespace MauiApp_test.MVVM.Models
         // Foreign key and relationship to the Instructor table
         [ForeignKey(typeof(Instructor))]
         public string InstructorName { get; set; }
-        public int InstructorId { get; set; }
+ 
 
         // Navigation property to access the related Instructor object
         [Ignore] // Ignore this property during database operations

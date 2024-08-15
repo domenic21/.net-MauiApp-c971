@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.InstructorCourses"
+             
+             Title="InstructorCourses"
+               >
+
+
+    <Grid Grid.Row="3"
+ RowDefinitions=".10*,.90*,.10*" >
+
+        <HorizontalStackLayout  HorizontalOptions="CenterAndExpand" Grid.Row="0" >
+          
+            <Label Text="{Binding CourseList.InstructorName }" x:Name="TermNum" FontSize="25" Margin="10,1,0,0" FontAttributes="Bold" TextColor="DarkOrange"/>
+        </HorizontalStackLayout>
+        <CollectionView ItemsSource="{Binding CourseList}" Grid.Row="1" >
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" Padding="10" Margin="10" BackgroundColor="LightGray" HeightRequest="250">
+                        <StackLayout>
+                            <!-- Check if the course is available -->
+                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="DarkOrange"  />
+                            <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}" FontSize="15" TextColor="Grey"  />
+                            <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="15" TextColor="Grey"/>
+                            <Label Text="{Binding Status}" FontSize="15" TextColor="Grey"  />
+                            <Label Text="Assessments" FontSize="25" TextColor="Black"  />
+
+                            <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
+                                <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
+                                <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
+                                <ImageButton Source="eye.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
+
+                            </HorizontalStackLayout>
+                            
+
+
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+
+        <!-- Footer -->
+        <StackLayout Grid.Row="2" Orientation="Horizontal" BackgroundColor="#FF16304D" HeightRequest="52">
+            <ImageButton Source="home.png" HorizontalOptions="FillAndExpand" x:Name="Home" Clicked="Home_Clicked" />
+            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor" Clicked="Instructor_Clicked" />
+        </StackLayout>
+    </Grid>
+
+
+</ContentPage>

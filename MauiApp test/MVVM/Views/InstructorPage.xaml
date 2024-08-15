@@ -20,8 +20,8 @@
                                 <StackLayout>
                                     
                                     <HorizontalStackLayout Spacing="20" >
-                                       
-                                        <Label Text="{Binding InstructorName}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+
+                                        <Label Text="{Binding InstructorName}" FontSize="18" FontAttributes="Bold" TextColor="Black" x:Name="InstructorName" />
                                     </HorizontalStackLayout>
                                     <Label Text="{Binding InstructorPhone}" FontSize="20" />
                                     
@@ -29,7 +29,7 @@
                                     <HorizontalStackLayout HorizontalOptions="EndAndExpand">
                                         <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" Clicked="Edit_Clicked" x:Name="Edit" CommandParameter="{Binding Id}" />
                                         <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" Clicked="Delete_Clicked" x:Name="Delete" CommandParameter="{Binding Id}" />
-
+                                        <Button Text="View Courses" Clicked="View_Courses_Clicked" x:Name="View_Courses" CommandParameter="{Binding InstructorName}"/>
                                     </HorizontalStackLayout>
                                 </StackLayout>
                             </Frame>

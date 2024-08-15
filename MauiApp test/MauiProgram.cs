@@ -1,9 +1,7 @@
-﻿using MauiApp_test.MVVM.Models;
+﻿using CommunityToolkit.Maui;
+using MauiApp_test.MVVM.Models;
 using MauiApp_test.Repositories;
 using Microsoft.Extensions.Logging;
-using SQLite;
-using SQLiteNetExtensions.Extensions;
-using SQLitePCL;
 
 namespace MauiApp_test
 {
@@ -14,6 +12,7 @@ namespace MauiApp_test
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -21,11 +20,11 @@ namespace MauiApp_test
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif    
             builder.Services.AddSingleton<BaseRepository<Courses>>();
             builder.Services.AddSingleton<BaseRepository<Terms>>();
-        
+
             builder.Services.AddSingleton<BaseRepository<Instructor>>();
 
             SQLitePCL.Batteries_V2.Init();

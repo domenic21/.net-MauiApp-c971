@@ -23,8 +23,10 @@ namespace MauiApp_test.Abstractions
         void DeleteRecord(int id);
         List<T>GetItemsById(int id);
         List<T> GetItemsByTerm(int Term);
+        List<T> GetItemsByInstructor(string InstructorName);
 
-        void UpdateItem(int Id, string name, string courseCode, string instructor, DateTime startDate, DateTime endDate, string status, int term, bool notifications);
+
+        
 
     }
 }

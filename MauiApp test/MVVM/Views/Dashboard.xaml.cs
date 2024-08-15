@@ -30,11 +30,6 @@ public partial class Dashboard : ContentPage
 
    
 
-    private void edit_Clicked(object sender, EventArgs e)
-    {
-
-
-    }
 
     private void Home_Clicked(object sender, EventArgs e)
     {

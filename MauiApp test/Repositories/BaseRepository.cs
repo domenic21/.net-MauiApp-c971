@@ -4,6 +4,7 @@ using SQLite;
 using SQLiteNetExtensions.Extensions;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using System;
 
 
 
@@ -11,7 +12,7 @@ using System.Linq.Expressions;
 namespace MauiApp_test.Repositories
 {
     public class BaseRepository<T> :
-          IBaseRepository<T> where T : TableData, new()
+              IBaseRepository<T> where T : TableData, new()
     {
         SQLiteConnection connection;
         public string StatusMessage { get; set; }
@@ -185,8 +186,8 @@ namespace MauiApp_test.Repositories
             try
             {
                 return connection.Query<T>($"SELECT * FROM Courses WHERE Term = {Term}");
-               
-                  
+
+
             }
             catch (Exception ex)
             {
@@ -194,23 +195,23 @@ namespace MauiApp_test.Repositories
             }
             return null;
         }
-        // Update item in the Courses table by Id sql query 
-        public void UpdateItem(int Id, string name, string courseCode, string instructor, DateTime startDate, DateTime endDate, string status, int term, bool notifications)
+        // Course List of every instructor courses
+        public List<T> GetItemsByInstructor(string InstructorName)
         {
             try
             {
-                connection.Execute($"UPDATE Courses SET Name = ?, CourseCode = ?, Instructor = ?, StartDate = ?, EndDate = ?, Status = ?, Term = ?, Notifications = ? WHERE Id = {Id}",
-                    name, courseCode, instructor, startDate, endDate, status, term, notifications);
+                return connection.Query<T>($"SELECT * FROM Courses WHERE InstructorName = {InstructorName}");
             }
             catch (Exception ex)
             {
                 StatusMessage = $"Error: {ex.Message}";
             }
+            return null;
         }
 
-       
-        
 
-        
+
+
+
     }
 }

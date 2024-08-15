@@ -3,9 +3,11 @@ using MauiApp_test.MVVM.Models;
 using MauiApp_test.Data;
 
 using System.Collections.ObjectModel;
+using PropertyChanged;
 
 namespace MauiApp_test.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
 
     public class EditViewModel
     {
@@ -14,12 +16,19 @@ namespace MauiApp_test.MVVM.ViewModels
         public ObservableCollection<Instructor> Instructors { get; set; }
      
         public int Id { get; set; }
+
+        public ObservableCollection<string> InstructorNames { get; set; }
+
+     
+
         public EditViewModel(int Id)
         {
             GetCourses(Id);
             AddInstructors();
             Instructors = new ObservableCollection<Instructor>(App.InstructorRepo.GetItems());
             Removeduplicates();
+            var instructors = App.InstructorRepo.GetItems();
+            InstructorNames = new ObservableCollection<string>(instructors.Select(i => i.InstructorName));
         }
 
         public void GetCourses(int Id)
@@ -75,5 +84,13 @@ namespace MauiApp_test.MVVM.ViewModels
             return App.CoursesRepo.StatusMessage;
         }
 
+        public void RefreshData(int Id)
+        {
+            //clear the list courses
+            Instructors.Clear();
+             GetCourses(Id);
+
+            
+        }
     }
 }

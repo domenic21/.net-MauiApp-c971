@@ -2,22 +2,27 @@
 using MauiApp_test.Data;
 using MauiApp_test.MVVM.Models;
 using System.Collections.ObjectModel;
+using PropertyChanged;
 
 namespace MauiApp_test.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class InstructorViewModel
     {
-
-
         public ObservableCollection<Instructor> Instructors { get; set; }
 
         public Instructor Instructor { get; set; } = new Instructor();
-       
+
+      
+
+
         public InstructorViewModel()
         {
             AddInstructors();
             Instructors = new ObservableCollection<Instructor>(App.InstructorRepo.GetItems());
             RemoveDuplicates();
+            RefreshData();
+            
         }
 
         private void AddInstructors()
@@ -39,11 +44,25 @@ namespace MauiApp_test.MVVM.ViewModels
                 Instructors.Remove(instructor);
             }
         }
-        public string SaveCourse()
+
+        public string SaveInstructor()
         {
             App.InstructorRepo.SaveItem(Instructor);
             return App.InstructorRepo.StatusMessage;
+        }
+
+        public void RefreshData()
+        {
+            //clear the list
+            Instructors.Clear();
+            //add the items
+
+            Instructors = new ObservableCollection<Instructor>(App.InstructorRepo.GetItems());
+            
+            
 
         }
+
+      
     }
 }
