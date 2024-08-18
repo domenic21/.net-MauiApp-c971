@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.AddAssessmentPage"
+             Title="Add Assessment">
+    <VerticalStackLayout>
+        <Label 
+            x:Name="CourseName"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"  FontSize="Large" TextColor="Coral" />
+
+        <Entry Placeholder="Assessment Name" x:Name="AssessmentNameEntry" FontSize="20" TextColor="DarkRed"/>
+        
+        <Label Text="Assessment Type" StyleClass="MarginT15" FontSize="20" TextColor="Black"/>
+        <Frame HeightRequest="80"  BackgroundColor="AliceBlue" >
+            <Picker SelectedItem="">
+                <Picker.ItemsSource  >
+                    <x:Array Type="{x:Type x:String}" >
+
+
+                        <x:String >Performance</x:String>
+                        <x:String>Objective</x:String>
+                      
+                    </x:Array>
+
+                </Picker.ItemsSource>
+            </Picker>
+        </Frame>
+
+        <DatePicker x:Name="StartDatePicker" />
+
+        <DatePicker x:Name="EndDatePicker" />
+        
+        <DatePicker x:Name="DueDatePicker" />
+
+
+
+
+
+
+
+        <!-- Optional Notes Section x:Name="NotesEntry" -->
+        <Label Text="Notes" StyleClass="MarginT15" FontSize="20" TextColor="DarkRed"/>
+        <Frame  HeightRequest="100">
+            <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" />
+        </Frame>
+        <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="End" >
+            <Button Text="Add "/>
+            <Button Text="Share "  />
+            <Button Text="Delete"  />
+        </HorizontalStackLayout>
+          <!-- Notifications Section -->
+        <HorizontalStackLayout Margin="10,10,0,0" HorizontalOptions="StartAndExpand">
+            <Label Text="Notifications" FontSize="20" TextColor="Blue" />
+            <Switch IsToggled="True" HeightRequest="20"/>
+        </HorizontalStackLayout>
+
+        <Button Text="Save" Clicked="Button_Clicked" Margin="30" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -30,9 +30,9 @@
                             <Label Text="Assessments" FontSize="25" TextColor="Black"  />
 
                             <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
-                                <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
-                                <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
-                                <ImageButton Source="eye.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
+                                <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" Clicked="edit_Clicked" x:Name="edit" />
+                                <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" x:Name="delete" Clicked="delete_Clicked" />
+                                <ImageButton Source="eye.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" x:Name="View" Clicked="View_Clicked" />
 
                             </HorizontalStackLayout>
                             

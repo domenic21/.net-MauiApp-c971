@@ -62,8 +62,9 @@ namespace MauiApp_test.MVVM.ViewModels
             {
                 CourseList = new ObservableCollection<Courses>(CourseList.Take(6));
 
-     
+
             }
         }
     }
 }
+

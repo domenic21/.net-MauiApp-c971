@@ -54,11 +54,21 @@
                         <Picker SelectedItem="{Binding Courses.Status}">
                             <Picker.ItemsSource >
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>Active</x:String>
-                                    <x:String>Inactive</x:String>
-                                </x:Array>
+                                   
+                                    
+                                            <x:String>In Progress</x:String>
+                                            <x:String>Completed</x:String>
+                                            <x:String>Dropped</x:String>
+                                            <x:String>Plan to Take</x:String>
+                                        </x:Array>
+                          
                             </Picker.ItemsSource>
                         </Picker>
+                    </Frame>
+                    <!-- Optional Notes Section x:Name="NotesEntry" -->
+                    <Label Text="Notes" StyleClass="MarginT15" />
+                    <Frame StyleClass="FrameBorder" HeightRequest="100">
+                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" />
                     </Frame>
                     <Label Text="Instructor" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">

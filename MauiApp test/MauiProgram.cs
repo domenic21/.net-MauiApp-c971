@@ -26,6 +26,7 @@ namespace MauiApp_test
             builder.Services.AddSingleton<BaseRepository<Terms>>();
 
             builder.Services.AddSingleton<BaseRepository<Instructor>>();
+            builder.Services.AddSingleton<BaseRepository<Assessment>>();
 
             SQLitePCL.Batteries_V2.Init();
 

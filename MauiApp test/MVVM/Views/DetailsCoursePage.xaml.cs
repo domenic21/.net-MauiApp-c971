@@ -8,7 +8,7 @@ public partial class DetailsCoursePage : ContentPage
 	{
        InitializeComponent();
 		BindingContext = new DetailsCourseViewModel(Term); 
-
+        TermNum.Text = Term.ToString();
 
    
 

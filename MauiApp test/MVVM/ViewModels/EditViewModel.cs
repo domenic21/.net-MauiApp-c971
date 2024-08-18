@@ -15,7 +15,7 @@ namespace MauiApp_test.MVVM.ViewModels
 
         public ObservableCollection<Instructor> Instructors { get; set; }
      
-        public int Id { get; set; }
+  
 
         public ObservableCollection<string> InstructorNames { get; set; }
 
@@ -53,8 +53,6 @@ namespace MauiApp_test.MVVM.ViewModels
             }
         }
 
-       
-      
   
 
         public void DeleteCourse()

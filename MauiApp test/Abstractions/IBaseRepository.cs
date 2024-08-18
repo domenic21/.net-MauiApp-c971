@@ -25,8 +25,9 @@ namespace MauiApp_test.Abstractions
         List<T> GetItemsByTerm(int Term);
         List<T> GetItemsByInstructor(string InstructorName);
 
+       
 
-        
+
 
     }
 }

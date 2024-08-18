@@ -62,4 +62,6 @@ public partial class TermPage : ContentPage
 
 
     }
+
+   
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.ViewCoursePage"
+             Title="ViewCoursePage">
+    <Grid  Grid.Row="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".12*" />
+            <RowDefinition Height=".90*" />
+         
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <Label Text="Course Details" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+        </ScrollView>
+        <ScrollView Grid.Row="1">
+            <StackLayout Margin="15">
+                <Label Text="{Binding Course.Name}" Padding="10,0,0,0" TextColor="Black" FontSize="30" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.CourseCode}" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.Status}" />
+                <Label FontSize="20" TextColor="Black" Text="{Binding Course.InstructorName}" />
+                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Term:" FontSize="20" TextColor="Black" />
+                    <Label FontSize="20" TextColor="Black" Text="{Binding Course.Term}" />
+                </StackLayout>
+                <Label Text="Assessments" TextColor="DarkOrange" FontSize="30" VerticalOptions="Center" HorizontalOptions="Center" />
+
+                <!-- Objective Assessment Card -->
+                <Frame BackgroundColor="LightGray" Padding="10" Margin="10">
+                    <StackLayout>
+                        <Label Text="Objective Assessment" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].CourseName}" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].AssessmentName}" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
+                            <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30"
+                                         x:Name="edit_obj" Clicked="edit_obj_Clicked" 
+                                         CommandParameter="{Binding Id} " 
+                                         IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                         />
+                            <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" 
+                                         Clicked="Delete_obj_Clicked" x:Name="Delete_obj" 
+                                         CommandParameter="{Binding Id}" 
+                                         IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                         />
+
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Text="Notifications" FontSize="20" TextColor="Blue" />
+                            <Switch IsToggled="False" HeightRequest="20"/>
+                        </HorizontalStackLayout>
+
+                        <!-- If the assesment is not available -->
+
+                        <Button Text="Add Assessment" 
+                         x:Name="AddAssesment" 
+                          CommandParameter="{Binding Course.Name}"
+                          IsVisible="{Binding IsButtonVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"  
+                          Clicked="AddAssesment_Clicked_1" />
+
+
+                    </StackLayout>
+                </Frame>
+
+                <!-- Performance Assessment Card -->
+                <Frame BackgroundColor="LightGray" Padding="10" Margin="10" >
+                    <StackLayout >
+                        <Label Text="Performance Assessment" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Performance[0].CourseName}" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Performance[0].AssessmentName}" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Performance[0].StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <Label Text="{Binding Performance[0].EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <Label Text="{Binding Performance[0].DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand" IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Text="Notifications"  FontSize="20" TextColor="Blue"/>
+                            <Switch IsToggled="False" HeightRequest="20" />
+                        </HorizontalStackLayout>
+                      
+                        <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
+                            <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" 
+                                         x:Name="edit_perform" Clicked="edit_perform_Clicked" 
+                                         CommandParameter="{Binding Id} " 
+                                         IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}"    
+                                         />
+                            <ImageButton Source="delete.png" WidthRequest="50" 
+                                         HeightRequest="30" Clicked="Delete_perform_Clicked" 
+                                         x:Name="Delete_perform" 
+                                         CommandParameter="{Binding Id}" 
+                                         IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}"    
+                                         
+                                         />
+
+                        </HorizontalStackLayout>
+                        <!-- If the assesment is not available -->
+
+                        <Button Text="Add Assessment" 
+                         x:Name="AddAssesment2" 
+                          CommandParameter="{Binding Course.Name, Mode=TwoWay}, {Binding Performance.AssessmentType}"
+                          IsVisible="{Binding IsButtonVisiblePerf, Converter={StaticResource BooleanToVisibilityConverter}}"      
+                                Clicked="AddAssesment2_Clicked"  />
+                    
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        
+            
+      
+    </Grid>
+</ContentPage>

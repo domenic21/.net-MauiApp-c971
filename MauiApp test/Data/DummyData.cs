@@ -1,5 +1,6 @@
 ﻿
 using MauiApp_test.MVVM.Models;
+using System;
 
 namespace MauiApp_test.Data
 {
@@ -35,7 +36,7 @@ namespace MauiApp_test.Data
                 Status = "Active",
                 Notes = "This is a dummy course",
                 Notifications = true,
-                Term = 1
+                Term = 3
             };
             courses.Add(chemistryCourse);
 
@@ -74,6 +75,47 @@ namespace MauiApp_test.Data
             };
             instructors.Add(instructor2);
             return instructors;
+        }
+
+        public static List<Assessment> AddAssesment()
+        {
+            var assessment = new List<Assessment>();
+
+            var assessment1 = new Assessment
+            {
+                AssessmentName = "Midterm",
+                AssessmentType = AssessmentType.Performance,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                DueDate = DateTime.Now,
+                StartDateNotifications = true,
+                EndDateNotifications = true,
+                NotificationDueDate = true,
+                IsButtonVisible = true,
+                CourseName = "Mathematics"
+
+
+            };
+            assessment.Add(assessment1);
+         
+
+            var assessment2 = new Assessment
+            {
+                AssessmentName = "Midterm",
+                AssessmentType = AssessmentType.Objective,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                DueDate = DateTime.Now,
+                StartDateNotifications = true,
+                EndDateNotifications = true,
+                NotificationDueDate = true,
+                IsButtonVisible = true,
+                CourseName = "Mathematics"
+
+
+            };
+            assessment.Add(assessment2);
+            return assessment;
         }
     }
 }

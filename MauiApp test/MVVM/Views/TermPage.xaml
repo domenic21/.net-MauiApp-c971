@@ -45,7 +45,7 @@
         <!-- Footer -->
         <StackLayout Grid.Row="2" Orientation="Horizontal" BackgroundColor="#FF16304D" HeightRequest="52">
             <ImageButton Source="home.png" HorizontalOptions="FillAndExpand" x:Name="Home" Clicked="Home_Clicked" />
-            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor"  />
+
         </StackLayout>
     </Grid>
 

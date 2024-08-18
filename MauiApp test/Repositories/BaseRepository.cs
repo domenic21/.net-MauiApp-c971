@@ -1,8 +1,8 @@
 ﻿using MauiApp_test.Abstractions;
-using MauiApp_test.MVVM.Models;
+
 using SQLite;
 using SQLiteNetExtensions.Extensions;
-using System.ComponentModel;
+
 using System.Linq.Expressions;
 using System;
 
@@ -209,6 +209,7 @@ namespace MauiApp_test.Repositories
             return null;
         }
 
+        
 
 
 

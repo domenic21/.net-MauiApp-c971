@@ -7,14 +7,13 @@ namespace MauiApp_test.MVVM.Views;
 
 public partial class EditCoursePage : ContentPage
 {
-    public Courses Course { get; set; } 
+    
     public EditCoursePage(int Id)
     {
         InitializeComponent();
         BindingContext = new EditViewModel(Id);
 
-        App.CoursesRepo.GetItemsById(Id);
-        //get the instrucotr names to poblate the picker array
+      
 
     
       

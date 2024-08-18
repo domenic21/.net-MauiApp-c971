@@ -11,7 +11,7 @@
             <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" TextColor="Grey" Padding="0,2,0,0" FontSize="Medium"/>
 
             <Label StyleClass="HeaderSubTitle" Text="{Binding Courses.EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'} " Padding="0,2,0,0" TextColor="Grey" FontSize="Medium"/>
-
+            <Label Text="{Binding Courses.DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="15" TextColor="Grey" Padding="0,10,0,0" />
 
         </VerticalStackLayout>
 
@@ -55,8 +55,10 @@
                         <Picker SelectedItem="{Binding Courses.Status}" x:Name="Status">
                             <Picker.ItemsSource >
                                 <x:Array Type="{x:Type x:String}">
-                                    <x:String>Active</x:String>
-                                    <x:String>Inactive</x:String>
+                                    <x:String>In Progress</x:String>
+                                    <x:String>Completed</x:String>
+                                    <x:String>Dropped</x:String>
+                                    <x:String>Plan to Take</x:String>
                                 </x:Array>
                             </Picker.ItemsSource>
                         </Picker>
@@ -83,17 +85,10 @@
                           SelectedItem="{Binding Courses.InstructorName}"
                        
                         FontSize="Medium" x:Name="Instructor" /> 
-                        <!--<Picker SelectedItem="{Binding Courses.InstructorName}" x:Name="Instructor">
-                            <Picker.ItemsSource >
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Dr. Smith</x:String>
-
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>-->
-
+         
 
                     </Frame>
+                    
 
 
 

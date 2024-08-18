@@ -1,20 +1,34 @@
-﻿using SQLite;
-using MauiApp_test.Abstractions;
-
+﻿using MauiApp_test.Abstractions;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
+using MauiApp_test.MVVM.Models;
 
 namespace MauiApp_test.MVVM.Models
 {
-    [Table("Assessment")]
-    public  class Assessment : TableData
+    public enum AssessmentType
     {
-        public Type TypeName { get; set; }
-        public string Name { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public DateTime dueDate { get; set; }
+        Objective,
+        Performance
+    }
+
+    [Table("Assessment")]
+    public class Assessment : TableData
+    {
+      
+        public string AssessmentName { get; set; }
+        public  AssessmentType AssessmentType { get; set; } // Added Type property
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime DueDate { get; set; }
         public bool StartDateNotifications { get; set; }
-        public DateTime StartDateNotifier { get; set; }
+
         public bool EndDateNotifications { get; set; }
-        public DateTime EndDateNotifier { get; set; }
+        public bool NotificationDueDate { get; set; }
+
+        public bool IsButtonVisible { get; set; } =false; // will set default value to false for IsButtonVisible to not show the button
+
+        [ForeignKey(typeof(Courses))]
+        public string CourseName { get; set; }
     }
 }

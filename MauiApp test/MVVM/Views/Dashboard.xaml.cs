@@ -59,4 +59,13 @@ public partial class Dashboard : ContentPage
     {
         await Navigation.PushAsync(new InstructorPage());
     }
+
+    private async void View_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as ImageButton;
+        int courseId = (int)button.CommandParameter;
+
+        await Navigation.PushAsync(new ViewCoursePage(courseId));
+
+    }
 }
