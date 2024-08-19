@@ -1,15 +1,20 @@
-﻿using MauiApp_test.MVVM.Models;
-using MauiApp_test.Data;
+﻿using MauiApp_test.Data;
+using MauiApp_test.MVVM.Models;
 using PropertyChanged;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System;
+using System.Collections.Generic;
+
 
 
 namespace MauiApp_test.MVVM.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
-   public  class ViewCourseModel
+    public class ViewCourseModel 
     {
-       
+
         public Courses Course { get; set; }
 
         public ObservableCollection<Assessment> Assessments { get; set; }
@@ -17,20 +22,29 @@ namespace MauiApp_test.MVVM.ViewModels
         public ObservableCollection<Assessment> Objective { get; set; } = new ObservableCollection<Assessment>();
         public ObservableCollection<Assessment> Performance { get; set; } = new ObservableCollection<Assessment>();
 
-        public  bool IsButtonVisibleObj { get; set; }
+        public bool IsButtonVisibleObj { get; set; }
         public bool IsButtonVisiblePerf { get; set; }
 
         public bool IconVisible { get; set; }
 
         public bool IconVisibleObj { get; set; }
+
+        // Property to hold all the enum values for binding
+        public ObservableCollection<AssessmentType> AssessmentTypes { get; set; }
+
+        /// 
+
         public ViewCourseModel(int Id)
         {
             GetCourse(Id);
-            InitAssessments();
-            AddAssessment();
-           
-
+            AssessmentMaxFilter();
+            CheckButton();
+            // Populate the enum values
+         
         }
+
+    
+
 
 
         public void GetCourse(int Id)
@@ -78,15 +92,53 @@ namespace MauiApp_test.MVVM.ViewModels
                 if (assessment.AssessmentType == AssessmentType.Performance && assessment.CourseName == courseName)
                 {
                     Performance.Add(assessment);
-                   
-                  
+
+
                 }
                 CheckButton();
-             
+
 
             }
 
         }
+        /// 
+        public void AssessmentMaxFilter()
+        {
+            if (Assessments == null)
+            {
+                Assessments = new ObservableCollection<Assessment>();
+            }
+
+            // Retrieve assessments from the database
+            List<Assessment> assessmentsList = App.AssessmentRepo.GetItems();
+
+            // Save the retrieved assessments to the Assessments collection
+            foreach (var assessment in assessmentsList)
+            {
+                App.AssessmentRepo.SaveItem(assessment);
+                Assessments.Add(assessment);
+            }
+
+            // Filter and add assessments to the Objective and Performance collections based on the course name
+            string courseName = GetCourseName(Course.Id);
+            foreach (var assessment in assessmentsList)
+            {
+                if (assessment.AssessmentType == AssessmentType.Objective && assessment.CourseName == courseName)
+                {
+                    Objective.Add(assessment);
+                }
+
+                if (assessment.AssessmentType == AssessmentType.Performance && assessment.CourseName == courseName)
+                {
+                    Performance.Add(assessment);
+                }
+            }
+
+            CheckButton();
+        }
+
+
+
         //button control check function to show the button if the performance list is empty
         public void CheckButton()
         {
@@ -109,22 +161,12 @@ namespace MauiApp_test.MVVM.ViewModels
                 IconVisibleObj = true;
             }
         }
-        //iniciate the list assesments bringing all information from the database
-        public void InitAssessments()
-        {
-            //clean the list
-            if (Assessments == null)
-            {
-                Assessments = new ObservableCollection<Assessment>();
-
-            }
-            
-            Assessments = new ObservableCollection<Assessment>(App.AssessmentRepo.GetItems());
+    
 
 
 
-            FillData();
-        }
+
+
         //get courseName by the passes courseId
         public string GetCourseName(int Id)
         {
@@ -138,50 +180,7 @@ namespace MauiApp_test.MVVM.ViewModels
                 return "";
             }
         }
-        // Filter the data to match the courseName and create 2 lists, one objective and one performance, and filter them by the courseName
-    
-
-
-        private void FillData()
-        {
-           
-      
-            if (Assessments == null)
-            {
-                // Handle the case where Assessments is null
-                Console.WriteLine("Error: Assessments collection is null.");
-                return;
-            }
-
-            string courseName = GetCourseName(Course.Id);
-            // Filter the assessments by CourseName and AssessmentType
-            var objectiveAssessments = Assessments
-                .Where(assessment => assessment.AssessmentType == AssessmentType.Objective && assessment.CourseName == courseName)
-                .ToList();
-
-            var performanceAssessments = Assessments
-                .Where(assessment => assessment.AssessmentType == AssessmentType.Performance && assessment.CourseName == courseName)
-                .ToList();
-
-            // Clear the current collections before adding new data
-            Objective.Clear();
-            Performance.Clear();
-
-            // Populate the ObservableCollections
-            Objective = new ObservableCollection<Assessment>(objectiveAssessments);
-            Performance = new ObservableCollection<Assessment>(performanceAssessments);
-
-
-        }
-
-
-
-
-
-
-
-
-
+        
 
 
     }

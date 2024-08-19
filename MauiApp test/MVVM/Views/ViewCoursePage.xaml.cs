@@ -35,7 +35,7 @@ public partial class ViewCoursePage : ContentPage
 
     
 
-    private async void AddAssesment2_Clicked(object sender, EventArgs e)
+    private async void AddAssessment2_Clicked(object sender, EventArgs e)
     {
         var Button = (Button)sender;
         if (Button.CommandParameter is string courseName )
@@ -49,7 +49,7 @@ public partial class ViewCoursePage : ContentPage
         }
     }
 
-    private async void AddAssesment_Clicked_1(object sender, EventArgs e)
+    private async void AddAssessment1_Clicked(object sender, EventArgs e)
     {
         var Button = (Button)sender;
         if (Button.CommandParameter is string courseName)
@@ -62,4 +62,6 @@ public partial class ViewCoursePage : ContentPage
             await DisplayAlert("Error", "Invalid course ID", "OK");
         }
     }
+
+   
 }

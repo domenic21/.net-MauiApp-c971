@@ -16,19 +16,21 @@ namespace MauiApp_test.MVVM.Models
     {
       
         public string AssessmentName { get; set; }
-        public  AssessmentType AssessmentType { get; set; } // Added Type property
+        public  AssessmentType AssessmentType { get; set; } 
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime DueDate { get; set; }
         public bool StartDateNotifications { get; set; }
 
+        public string Notes { get; set; }
+
         public bool EndDateNotifications { get; set; }
         public bool NotificationDueDate { get; set; }
 
         public bool IsButtonVisible { get; set; } =false; // will set default value to false for IsButtonVisible to not show the button
 
-        [ForeignKey(typeof(Courses))]
+        public string Name { get; set; } //testing
         public string CourseName { get; set; }
     }
 }

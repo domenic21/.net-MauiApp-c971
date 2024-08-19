@@ -72,10 +72,11 @@
                     </Frame>
                     <Label Text="Instructor" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
-                        <Picker ItemsSource="{Binding Instructors}"
-                        ItemDisplayBinding="{Binding InstructorName}"
-                          SelectedItem="{Binding Courses.InstructorName}"
-                         FontSize="Medium" />
+                        <Picker ItemsSource="{Binding InstructorNames}"
+  
+                           SelectedItem="{Binding Courses.InstructorName}"
+      
+                          FontSize="Medium" x:Name="Instructor" />
                     </Frame>
 
 

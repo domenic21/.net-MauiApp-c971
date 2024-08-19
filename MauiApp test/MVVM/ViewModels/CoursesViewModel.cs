@@ -7,6 +7,12 @@ namespace MauiApp_test.MVVM.ViewModels
     public class CoursesViewModel
     {
         public ObservableCollection<Instructor> Instructors { get; set; }
+
+
+
+
+
+        public ObservableCollection<string> InstructorNames { get; set; }
         public Courses Courses { get; set; } = new Courses
         {
             StartDate = DateTime.Now,
@@ -15,9 +21,12 @@ namespace MauiApp_test.MVVM.ViewModels
         public CoursesViewModel(int term)
         {
             this.Term = Term;
+
             AddInstructors();
             Instructors = new ObservableCollection<Instructor>(App.InstructorRepo.GetItems());
             Removeduplicates();
+            var instructors = App.InstructorRepo.GetItems();
+            InstructorNames = new ObservableCollection<string>(instructors.Select(i => i.InstructorName));
 
         }
         public string SaveCourse()

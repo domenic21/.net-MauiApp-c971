@@ -33,6 +33,7 @@ namespace MauiApp_test
 
             InstructorRepo = _instructor;
             MainPage = new NavigationPage(root: new Dashboard());
+            //MainPage = new NavigationPage(new AddAssessmentPage("Chemistry"));
         }
 
     }
