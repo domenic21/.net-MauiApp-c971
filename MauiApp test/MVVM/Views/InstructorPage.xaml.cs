@@ -25,8 +25,11 @@ public partial class InstructorPage : ContentPage
 
     }
 
-    private void Edit_Clicked(object sender, EventArgs e)
+    private async void Edit_Clicked(object sender, EventArgs e)
     {
+        var button = sender as ImageButton;
+        var instructorId = (int)button.CommandParameter;
+       await Navigation.PushAsync(new EditInstructoPage(instructorId));
 
     }
 
@@ -62,6 +65,15 @@ public partial class InstructorPage : ContentPage
         var button = sender as Button;
         var instructorName = (string)button.CommandParameter;
         await Navigation.PushAsync(new InstructorCourses(instructorName));
+
+    }
+
+ 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        var vm = (InstructorViewModel)BindingContext;
+        vm.RefreshData();
 
     }
 }

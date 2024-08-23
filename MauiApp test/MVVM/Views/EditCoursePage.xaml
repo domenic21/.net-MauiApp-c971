@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp_test.MVVM.Views.EditCoursePage"
+             
              Title="EditCoursePage">
     <Grid RowDefinitions=".25*,.15*,.50*" >
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
@@ -35,6 +36,15 @@
                         <DatePicker  Date="{Binding Courses.StartDate} " x:Name="StartDate"/>
 
                     </Frame>
+                    <HorizontalStackLayout Spacing="5" >
+
+                        <Label Text="Notification" Margin="10" />
+                        <Switch IsToggled="{Binding Courses.NotificationEnd}" x:Name="notificationEnd"
+                                Toggled="notificationEnd_Toggled"
+                                
+                                />
+
+                    </HorizontalStackLayout>
                     <Label Text="Term" />
                     <Frame StyleClass="FrameBorder">
                         <Entry Text="{Binding Courses.Term}" x:Name="Term" Keyboard="Numeric"/>
@@ -46,8 +56,10 @@
 
                     </Frame>
                     <HorizontalStackLayout Spacing="5" >
-                        <CheckBox IsChecked="{Binding Courses.Notification}" x:Name="Notification"  />
-                        <Label Text="Notification?" Margin="10" />
+               
+                        <Label Text="Notification" Margin="10" />
+                        <Switch IsToggled="{Binding Courses.NotificationStart}" Toggled="Switch_Toggled" />
+
                     </HorizontalStackLayout>
 
                     <Label Text="Course Status" StyleClass="MarginT15"/>
@@ -66,17 +78,17 @@
                     <!-- Optional Notes Section x:Name="NotesEntry" -->
                     <Label Text="Notes" StyleClass="MarginT15" />
                     <Frame StyleClass="FrameBorder" HeightRequest="100">
-                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" />
+                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" x:Name="NotesEntry" />
                     </Frame>
                     
 
                     <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
                     <HorizontalStackLayout Spacing="10"  >
-                        <Button Text="Add "  />
-                        <Button Text="Share "  />
-                        <Button Text="Delete"  />
+                        <Button Text="Share" x:Name="ShareNotes" Clicked="ShareNotes_Clicked" />
+                        <Button Text="Delete"  Clicked="DeleteNote_Clicked" x:Name="DeleteNote"/>
+                        <Button Text="Edit"  Clicked="editnotes_Clicked" x:Name="editnotes"/>
                     </HorizontalStackLayout>
-                     <!--instructor picker-->
+                    <!--instructor picker-->
                     <Label Text="Course Instructor" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
 
@@ -88,7 +100,8 @@
          
 
                     </Frame>
-                    
+
+                
 
 
 

@@ -9,8 +9,12 @@ namespace MauiApp_test.MVVM.ViewModels
     [AddINotifyPropertyChangedInterface]
     public class AddAssessmentViewModel
     {
-        public Assessment Assessment { get; set; } = new Assessment();
-
+        public Assessment Assessment { get; set; } = new Assessment { 
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now.AddDays(30),
+            DueDate = DateTime.Now.AddDays(25),
+        };
+        
 
         public ObservableCollection<Assessment> Assessments { get; set; }
 
@@ -18,8 +22,8 @@ namespace MauiApp_test.MVVM.ViewModels
 
         public AddAssessmentViewModel()
         {
-          
-            GetAssessments();
+           GetAssessments();
+           
             AssessmentTypes = new ObservableCollection<AssessmentType>(GetAssessmentTypes());
         }
 
@@ -37,10 +41,18 @@ namespace MauiApp_test.MVVM.ViewModels
                     AssessmentType.Performance
                 };
         }
+
+        public string DeleteAssessment()
+        {
+            App.AssessmentRepo.DeleteItem(Assessment);
+            return App.AssessmentRepo.StatusMessage;
+
+        }
+
         public void GetAssessments()
         {
             List<Assessment> assessmentsList = App.AssessmentRepo.GetItems();
-           
+
             if (assessmentsList.Count > 0)
             {
                 // Populate the Assessments collection with the data from the database 
@@ -49,16 +61,15 @@ namespace MauiApp_test.MVVM.ViewModels
                 Assessments = new ObservableCollection<Assessment>(
                     Assessments.GroupBy(a => a.AssessmentName).Select(g => g.First())
                 );
-        
+
             }
             else
             {
                 Assessments = new ObservableCollection<Assessment>();
-            
+
             }
 
         }
-
 
     }
 }

@@ -38,15 +38,19 @@
                         <DatePicker  Date="{Binding Courses.StartDate}"/>
                    
                     </Frame>
-               
+                    <HorizontalStackLayout Spacing="5" >
+                        <Switch IsToggled="{Binding Courses.NotificationStart}" x:Name="NotificationStart" Toggled="NotificationStart_Toggled" />
+                        <Label Text="Notification" Margin="10" />
+                    </HorizontalStackLayout>
+
                     <Label Text="End Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
                         <DatePicker Date="{Binding Courses.EndDate}"/>
                       
                     </Frame>
                     <HorizontalStackLayout Spacing="5" >
-                        <CheckBox IsChecked="{Binding Courses.Notification}" />
-                        <Label Text="Notification?" Margin="10" />
+                        <Switch IsToggled="{Binding Courses.NotificationEnd}" x:Name="NotificationEnd" Toggled="NotificationEnd_Toggled" />
+                        <Label Text="Notification" Margin="10" />
                     </HorizontalStackLayout>
 
                     <Label Text="Course Status" StyleClass="MarginT15"/>
@@ -68,8 +72,14 @@
                     <!-- Optional Notes Section x:Name="NotesEntry" -->
                     <Label Text="Notes" StyleClass="MarginT15" />
                     <Frame StyleClass="FrameBorder" HeightRequest="100">
-                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" />
+                        <Entry Placeholder="Enter optional notes" Text="{Binding Courses.Notes}" x:Name="NotesEntry"/>
+                     
+                        
                     </Frame>
+                    <HorizontalStackLayout Spacing="10"  >
+                        <Button Text="Share" x:Name="ShareNotes" Clicked="ShareNotes_Clicked" />
+                        <Button Text="Delete"  Clicked="DeleteNote_Clicked" x:Name="DeleteNote"/>
+                    </HorizontalStackLayout>
                     <Label Text="Instructor" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
                         <Picker ItemsSource="{Binding InstructorNames}"

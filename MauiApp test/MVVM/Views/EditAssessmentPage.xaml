@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp_test.MVVM.Views.EditAssessmentPage"
+             
+             Title="Edit Assessment ">
+
+    <ScrollView>
+                            <StackLayout>
+                                <Label x:Name="CourseName"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       FontSize="Large"
+                                       TextColor="Coral"
+                                       Text="{Binding Assessments.CourseName}" />
+
+                                <Entry Placeholder="CourseName"
+                                       FontSize="20"
+                                       TextColor="DarkRed"
+                                       x:Name="CourseName1"
+                                       Text="{Binding Assessments.CourseName}" />
+
+                                <Entry Placeholder="Assessment Name"
+                                       FontSize="20"
+                                       TextColor="DarkRed"
+                                       Text="{Binding Assessments.AssessmentName}"
+                                       x:Name="AssessmentName" />
+
+                                <Label Text="Assessment Type"
+                                       StyleClass="MarginT15"
+                                       FontSize="20"
+                                       TextColor="Black" />
+                                <Frame HeightRequest="80" BackgroundColor="AliceBlue">
+                                    <Picker ItemsSource="{Binding AssessmentTypes}"
+                                            SelectedItem="{Binding Assessments.AssessmentType, Mode=TwoWay}" />
+                                </Frame>
+
+                                <DatePicker x:Name="Start" Date="{Binding Assessments.StartDate}" />
+                                <DatePicker x:Name="End" Date="{Binding Assessments.EndDate}" />
+                                <DatePicker x:Name="Due" Date="{Binding Assessments.DueDate}" />
+
+                                <!-- Optional Notes Section x:Name="NotesEntry" -->
+                                <Label Text="Notes" StyleClass="MarginT15" FontSize="20" TextColor="DarkRed" />
+                                <Frame HeightRequest="100">
+                                    <Entry Placeholder="Enter optional notes"
+                                           Text="{Binding Assessments.Notes}"
+                                           x:Name="NotesEntry" />
+                                </Frame>
+
+                                <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
+                                <HorizontalStackLayout Spacing="10"
+                                                      HorizontalOptions="EndAndExpand"
+                                                      Margin="0,0,15,0">
+                                    <Button Text="Share"
+                                            x:Name="ShareNotes"
+                                            Clicked="ShareNotes_Clicked" />
+                                    <Button Text="Delete"
+                                            Clicked="DeleteNote_Clicked"
+                                            x:Name="DeleteNote" />
+                                </HorizontalStackLayout>
+
+                                <!-- Notifications Section -->
+                                <HorizontalStackLayout Margin="10,10,0,0" HorizontalOptions="StartAndExpand">
+                                    <Label Text="Notifications" FontSize="20" TextColor="Blue" />
+                                    <Switch IsToggled="True" HeightRequest="20" />
+                                </HorizontalStackLayout>
+
+                                <Button Text="Save" Clicked="Save_Clicked" Margin="30" x:Name="Save" />
+                                <Button Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked" />
+                            </StackLayout>
+    </ScrollView>
+
+</ContentPage>

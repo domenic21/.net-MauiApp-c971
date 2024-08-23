@@ -39,12 +39,12 @@ namespace MauiApp_test.MVVM.ViewModels
             GetCourse(Id);
             AssessmentMaxFilter();
             CheckButton();
-            // Populate the enum values
+            AddAssessment();
+         
          
         }
 
     
-
 
 
         public void GetCourse(int Id)
@@ -110,11 +110,16 @@ namespace MauiApp_test.MVVM.ViewModels
             }
 
             // Retrieve assessments from the database
-            List<Assessment> assessmentsList = App.AssessmentRepo.GetItems();
+            List<Assessment> assessments1 = App.AssessmentRepo.GetItems();
+            // Remove repeated items based on the assessment name
+            List<Assessment> assessmentsList = assessments1.GroupBy(a => a.AssessmentName).Select(g => g.Last()).ToList();
+
+            //then add the filtered items to the collection 
 
             // Save the retrieved assessments to the Assessments collection
             foreach (var assessment in assessmentsList)
             {
+
                 App.AssessmentRepo.SaveItem(assessment);
                 Assessments.Add(assessment);
             }
@@ -181,7 +186,15 @@ namespace MauiApp_test.MVVM.ViewModels
             }
         }
         
-
+        //refresh the data
+        public void RefreshData()
+        {
+            // Clear the current collections before adding new data
+          
+            Objective.Clear();
+            Performance.Clear();
+            AssessmentMaxFilter();
+        }
 
     }
 }

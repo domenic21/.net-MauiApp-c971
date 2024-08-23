@@ -20,12 +20,12 @@
 
 
                <Entry Placeholder="CourseName" FontSize="20" TextColor="DarkRed"
-                   Text="{Binding Assessment.CourseName}"
+                 x:Name="CourseName1"  Text="{Binding Assessment.CourseName}"
                />
 
 
             <Entry Placeholder="Assessment Name"  FontSize="20" TextColor="DarkRed"
-               Text="{Binding Assessment.AssessmentName}"
+               Text="{Binding Assessment.AssessmentName}" x:Name="AssessmentName"
                />
 
             <Label Text="Assessment Type" StyleClass="MarginT15" FontSize="20" TextColor="Black"/>
@@ -36,11 +36,11 @@
                 </Picker>
             </Frame>
 
-            <DatePicker  Date="{Binding Assessment.StartDate}" />
+            <DatePicker x:Name="Start" Date="{Binding Assessment.StartDate}" />
 
-            <DatePicker   Date="{Binding Assessment.EndDate}"/>
+            <DatePicker x:Name="End"   Date="{Binding Assessment.EndDate}"/>
 
-            <DatePicker  Date="{Binding Assessment.DueDate}"  />
+            <DatePicker x:Name="Due" Date="{Binding Assessment.DueDate}"  />
 
 
 
@@ -50,13 +50,14 @@
             <!-- Optional Notes Section x:Name="NotesEntry" -->
             <Label Text="Notes" StyleClass="MarginT15" FontSize="20" TextColor="DarkRed"/>
             <Frame  HeightRequest="100">
-                <Entry Placeholder="Enter optional notes" Text="{Binding Assessment.Notes}" />
+                <Entry Placeholder="Enter optional notes" Text="{Binding Assessment.Notes}" x:Name="NotesEntry" />
             </Frame>
+
             <!-- Buttons to Add and Share Notes Clicked="OnAddNoteClicked" Clicked="OnShareNoteClicked-->
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="End" >
-                <Button Text="Add "/>
-                <Button Text="Share "  />
-                <Button Text="Delete"  />
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="EndAndExpand" Margin="0,0,15,0"  >
+                <Button Text="Share" x:Name="ShareNotes" Clicked="ShareNotes_Clicked" />
+                <Button Text="Delete"  Clicked="DeleteNote_Clicked" x:Name="DeleteNote"/>
+          
             </HorizontalStackLayout>
             <!-- Notifications Section -->
             <HorizontalStackLayout Margin="10,10,0,0" HorizontalOptions="StartAndExpand">
@@ -67,29 +68,7 @@
             <Button Text="Save" Clicked="Button_Clicked" Margin="30" />
 
 
-            <!-- Debugging Collection View -->
-            <CollectionView ItemsSource="{Binding Assessments}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="LightGray" Padding="10" Margin="10">
-                            <StackLayout>
-                                <Label Text="testing" FontSize="20" TextColor="red" />
-                                <Label Text="{Binding CourseName}" FontSize="20" TextColor="Black" />
-                                
-                                <Label Text="{Binding AssessmentType}" FontSize="20" TextColor="Black" />
-                                <Label Text="{Binding AssessmentName}" FontSize="20" TextColor="Black" />
-                                <Label Text="{Binding Notes}" FontSize="20" TextColor="Black" />
-                                <Label Text="{Binding StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                                <Label Text="{Binding EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                                <Label Text="{Binding DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-
-
-
-                            </StackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+          
         </StackLayout>
     </ScrollView>
     

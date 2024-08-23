@@ -10,6 +10,7 @@
         <RoundRectangle Grid.RowSpan=" 2" StyleClass="TopRectangle" />
         <VerticalStackLayout StyleClass="Header" >
             <Label FontSize="35" Text="Hello, Student " TextColor="White"/>
+         
         </VerticalStackLayout>
        
         <Grid Grid.Row="2"
@@ -40,6 +41,7 @@
                                 <HorizontalStackLayout>
                                     <Label Text="Instructor: " FontSize="15" TextColor="Black" Padding="0,10,0,0" />
                                     <Label Text="{Binding InstructorName}" FontSize="15" TextColor="Black" Padding="0,10,0,0" />
+                             
                                 </HorizontalStackLayout>
                                
                                 

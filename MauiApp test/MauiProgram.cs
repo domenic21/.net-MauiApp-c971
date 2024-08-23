@@ -2,6 +2,7 @@
 using MauiApp_test.MVVM.Models;
 using MauiApp_test.Repositories;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 
 namespace MauiApp_test
 {
@@ -12,6 +13,7 @@ namespace MauiApp_test
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseLocalNotification()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {

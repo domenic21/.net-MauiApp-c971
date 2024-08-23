@@ -1,5 +1,6 @@
 ﻿using MauiApp_test.Data;
 using MauiApp_test.MVVM.Models;
+
 using System.Collections.ObjectModel;
 
 namespace MauiApp_test.MVVM.ViewModels
@@ -35,6 +36,8 @@ namespace MauiApp_test.MVVM.ViewModels
             return App.CoursesRepo.StatusMessage;
         }
         public int Term { get; set; }
+
+      
 
         //dummy data courses 
 
@@ -73,6 +76,8 @@ namespace MauiApp_test.MVVM.ViewModels
 
 
         }
+
+       
 
     }
 }

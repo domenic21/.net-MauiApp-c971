@@ -21,12 +21,13 @@ namespace MauiApp_test.MVVM.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime DueDate { get; set; }
-        public bool StartDateNotifications { get; set; }
-
         public string Notes { get; set; }
 
+        public bool StartDateNotifications { get; set; } 
         public bool EndDateNotifications { get; set; }
         public bool NotificationDueDate { get; set; }
+
+ 
 
         public bool IsButtonVisible { get; set; } =false; // will set default value to false for IsButtonVisible to not show the button
 

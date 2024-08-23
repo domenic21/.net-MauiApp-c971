@@ -19,28 +19,14 @@ namespace MauiApp_test.Data
                 EndDate = DateTime.Now,
                 Status = "Active",
                 Notes = "This is a dummy course",
-                Notifications = true,
+           
                 Term = 1
 
             };
             courses.Add(mathematicsCourse);
 
 
-            var chemistryCourse = new Courses
-            {
-                Name = "Chemistry",
-                CourseCode = "CHM101",
-                InstructorName = "John Doe",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                Status = "Active",
-                Notes = "This is a dummy course",
-                Notifications = true,
-                Term = 3
-            };
-            courses.Add(chemistryCourse);
-
-            return courses;
+          return courses;
         }
 
         public static List<Terms> GetTerms()
@@ -108,7 +94,7 @@ namespace MauiApp_test.Data
                 DueDate = DateTime.Now,
                 StartDateNotifications = true,
                 EndDateNotifications = true,
-                NotificationDueDate = true,
+               
                 IsButtonVisible = true,
                 CourseName = "Mathematics"
 

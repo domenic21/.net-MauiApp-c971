@@ -20,7 +20,27 @@
                 <Label FontSize="20" TextColor="Black" Text="{Binding Course.EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" />
                 <Label FontSize="20" TextColor="Black" Text="{Binding Course.DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" />
                 <Label FontSize="20" TextColor="Black" Text="{Binding Course.Status}" />
-                <Label FontSize="20" TextColor="Black" Text="{Binding Course.InstructorName}" />
+                <Label FontSize="20" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Status: " />
+                            <Span Text="{Binding Course.Status}" TextColor="Green"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label FontSize="20" TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Instructor: " />
+                            <Span Text="{Binding Course.InstructorName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <HorizontalStackLayout>
+                    <Label Text="Notes:" FontSize="20" TextColor="DarkBlue" />
+                    <Label FontSize="15" TextColor="Black" Text="{Binding Course.Notes}" />
+                </HorizontalStackLayout>
+               
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Term:" FontSize="20" TextColor="Black" />
@@ -32,56 +52,90 @@
                 <Frame BackgroundColor="LightGray" Padding="10" Margin="10">
                     <StackLayout>
                         <Label Text="Objective Assessment" FontSize="20" TextColor="Black" />
+                        <Label Text="{Binding Objective[0].Id}" />
                         <Label Text="{Binding Objective[0].CourseName}" FontSize="20" TextColor="Black" />
                         <Label Text="{Binding Objective[0].AssessmentName}" FontSize="20" TextColor="Black" />
                         <Label Text="{Binding Objective[0].StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
                         <Label Text="{Binding Objective[0].EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
                         <Label Text="{Binding Objective[0].DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
+
+                        <ScrollView HeightRequest="90" IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label FontSize="20" TextColor="Black">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Notes: "  />
+                                        <Span Text="{Binding Objective[0].Notes}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                          
+                        </ScrollView>
+
                         <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
                             <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30"
                                          x:Name="edit_obj" Clicked="edit_obj_Clicked" 
-                                         CommandParameter="{Binding Id} " 
+                                         CommandParameter="{Binding Objective[0].Id} " 
                                          IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" 
                                          Clicked="Delete_obj_Clicked" x:Name="Delete_obj" 
-                                         CommandParameter="{Binding Id}" 
+                                         CommandParameter="{Binding Objective[0].Id}" 
                                          IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Label Text="Notifications" FontSize="20" TextColor="Blue" />
-                            <Switch IsToggled="False" HeightRequest="20"/>
+                            <Label Text="Notification Start Date" FontSize="20" TextColor="Blue" />
+                            <Switch IsToggled="{Binding Objective[0].StartDateNotifications}" HeightRequest="20" x:Name="NotiStartObj" Toggled="NotiStartObj_Toggled"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Text="Notification End Date" FontSize="20" TextColor="Blue" />
+                            <Switch IsToggled="{Binding Objective[0].EndDateNotifications}" HeightRequest="20" x:Name="NotiEndObj" Toggled="NotiEndObj_Toggled"/>
                         </HorizontalStackLayout>
                         <!-- If the assessment is not available -->
                         <Button Text="Add Assessment" 
-                              
-                                CommandParameter="{Binding Course.Name}"
-                                IsVisible="{Binding IsButtonVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"  
-                                Clicked="AddAssessment1_Clicked" />
+                               CommandParameter="{Binding Course.Name}"
+                               IsVisible="{Binding IsButtonVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"  
+                               Clicked="AddAssessment1_Clicked" />
                     </StackLayout>
                 </Frame>
 
                 <!-- Performance Assessment Card -->
                 <Frame BackgroundColor="LightGray" Padding="10" Margin="10" >
                     <StackLayout >
+                        <Label Text="{Binding Performance[0].Id}" />
                         <Label Text="Performance Assessment" FontSize="20" TextColor="Black" />
                         <Label Text="{Binding Performance[0].CourseName}" FontSize="20" TextColor="Black" />
                         <Label Text="{Binding Performance[0].AssessmentName}" FontSize="20" TextColor="Black" />
                         <Label Text="{Binding Performance[0].StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
                         <Label Text="{Binding Performance[0].EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
                         <Label Text="{Binding Performance[0].DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand" IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <Label Text="Notifications"  FontSize="20" TextColor="Blue"/>
-                            <Switch IsToggled="False" HeightRequest="20" />
+
+                        <ScrollView HeightRequest="90" IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label FontSize="20" TextColor="Black">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Notes: "  />
+                                        <Span Text="{Binding Performance[0].Notes}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </ScrollView>
+                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Text="Notification Start Date" FontSize="20" TextColor="Blue" />
+                            <Switch IsToggled="{Binding Performance[0].StartDateNotifications}" HeightRequest="20" x:Name="NotiStartPer" Toggled="NotiStartPer_Toggled"/>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Label Text="Notification End Date" FontSize="20" TextColor="Blue" />
+                            <Switch IsToggled="{Binding Performance[0].EndDateNotifications}" HeightRequest="20" x:Name="NotiEndPer" Toggled="NotiEndPer_Toggled"/>
                         </HorizontalStackLayout>
                         <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
                             <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" 
                                          x:Name="edit_perform" Clicked="edit_perform_Clicked" 
-                                         CommandParameter="{Binding Id} " 
+                                         CommandParameter="{Binding Performance[0].Id} " 
                                          IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             <ImageButton Source="delete.png" WidthRequest="50" 
                                          HeightRequest="30" Clicked="Delete_perform_Clicked" 
                                          x:Name="Delete_perform" 
-                                         CommandParameter="{Binding Id}" 
+                                         CommandParameter="{Binding Performance[0].Id}" 
                                          IsVisible="{Binding IconVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </HorizontalStackLayout>
                         <!-- If the assessment is not available -->
@@ -93,39 +147,7 @@
                     </StackLayout>
                 </Frame>
 
-                <!-- Debugging Collection View -->
-                <CollectionView ItemsSource="{Binding assessmentsList}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BackgroundColor="LightGray" Padding="10" Margin="10">
-                                <StackLayout>
-                                    <Label Text="testing" FontSize="20" TextColor="Black" />
-                                    <Label Text="{Binding Name}" FontSize="20" TextColor="Black" />
-                                    <Label Text="{Binding AssessmentType}" FontSize="20" TextColor="Black" />
-                                    <Label Text="{Binding AssessmentName}" FontSize="20" TextColor="Black" />
-                                    <Label Text="{Binding StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                                    <Label Text="{Binding EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                                    <Label Text="{Binding DueDate, StringFormat='Due Date: {0:MM/dd/yyyy}'}" FontSize="16" TextColor="Black" />
-                                    <HorizontalStackLayout Margin="0,10" HorizontalOptions="End">
-                                        <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30"
-                                                     x:Name="edit_obj" Clicked="edit_obj_Clicked" 
-                                                     CommandParameter="{Binding Id} " 
-                                                     IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                        <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" 
-                                                     Clicked="Delete_obj_Clicked" x:Name="Delete_obj" 
-                                                     CommandParameter="{Binding Id}" 
-                                                     IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                    </HorizontalStackLayout>
-                                    <HorizontalStackLayout Margin="0,10,0,0" HorizontalOptions="StartAndExpand"  IsVisible="{Binding IconVisibleObj, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <Label Text="Notifications" FontSize="20" TextColor="Blue" />
-                                        <Switch IsToggled="False" HeightRequest="20"/>
-                                    </HorizontalStackLayout>
-                                 
-                                </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+       
 
                 
             </StackLayout>

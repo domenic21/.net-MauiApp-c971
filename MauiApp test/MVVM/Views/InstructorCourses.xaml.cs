@@ -8,8 +8,9 @@ public partial class InstructorCourses : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new InstructorCoursesViewModel(InstructorName);
+        NavigationPage.SetHasNavigationBar(this, false);
 
-	}
+    }
 
 
   

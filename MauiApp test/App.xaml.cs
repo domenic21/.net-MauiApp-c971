@@ -1,4 +1,5 @@
 ﻿using MauiApp_test.MVVM.Models;
+using MauiApp_test.MVVM.ViewModels;
 using MauiApp_test.MVVM.Views;
 using MauiApp_test.Repositories;
 
@@ -32,9 +33,32 @@ namespace MauiApp_test
             AssessmentRepo = _assesmentRepo;
 
             InstructorRepo = _instructor;
-            MainPage = new NavigationPage(root: new Dashboard());
-            //MainPage = new NavigationPage(new AddAssessmentPage("Chemistry"));
+          MainPage = new NavigationPage(root: new Dashboard());
+            //  MainPage = new NavigationPage(new MainPage());
+          
+
         }
+
+        protected override async void OnStart()
+        {
+            base.OnStart();
+
+            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+            {
+                var status = await Permissions.RequestAsync<Permissions.PostNotifications>();
+                if (status != PermissionStatus.Granted)
+                {
+                    // Handle the case when permission is not granted
+                    Console.WriteLine("Notification permissions not granted.");
+                    // Optionally, show a message to the user
+                }
+               
+
+            }
+
+
+        }
+
 
     }
 }

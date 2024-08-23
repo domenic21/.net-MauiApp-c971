@@ -18,7 +18,10 @@ namespace MauiApp_test.MVVM.Models
         public string Status { get; set; }
         public string Notes { get; set; }
         public int Term { get; set; }
-        public bool Notifications { get; set; }
+        public bool NotificationStart { get; set; }
+   
+        public bool NotificationEnd { get; set; }
+
 
         // Foreign key and relationship to the Instructor table
         [ForeignKey(typeof(Instructor))]

@@ -21,6 +21,12 @@ namespace MauiApp_test.MVVM.ViewModels
             LimitCourseList();
         }
 
+        public void RefreshData()
+        {
+            FillData(Term);
+            LimitCourseList();
+        }
+
         private void FillData(int Term)
         {
             var courses = App.CoursesRepo.GetItemsByTerm(Term);

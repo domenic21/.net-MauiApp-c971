@@ -26,12 +26,14 @@
                             <Label Text="{Binding StartDate, StringFormat='Start: {0:MM/dd/yyyy}'}" FontSize="15" TextColor="Grey" IsVisible="{Binding HasCourse}" />
                             <Label Text="{Binding EndDate, StringFormat='End: {0:MM/dd/yyyy}'}" FontSize="15" TextColor="Grey" IsVisible="{Binding HasCourse}" />
                             <Label Text="{Binding Status}" FontSize="15" TextColor="Grey" IsVisible="{Binding HasCourse}" />
-                            <Label Text="Assessments" FontSize="25" TextColor="Black" IsVisible="{Binding HasCourse}" />
+                            <Label Text="{Binding Notes}" FontSize="15" TextColor="Grey" IsVisible="{Binding HasCourse}" />
+                            
+                        
 
                             <HorizontalStackLayout Margin="0,10" HorizontalOptions="End" IsVisible="{Binding HasCourse}">
-                                <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
-                                <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
-                                <ImageButton Source="eye.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" />
+                                <ImageButton Source="edit.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" x:Name="EDIT" Clicked="EDIT_Clicked" />
+                                <ImageButton Source="delete.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" Clicked="Delete_Clicked"/>
+                                <ImageButton Source="eye.png" WidthRequest="50" HeightRequest="30" CommandParameter="{Binding Id}" Clicked="View_Clicked" />
 
                             </HorizontalStackLayout>
                             <!-- If the course is not available -->
@@ -56,7 +58,7 @@
         <!-- Footer -->
         <StackLayout Grid.Row="2" Orientation="Horizontal" BackgroundColor="#FF16304D" HeightRequest="52">
             <ImageButton Source="home.png" HorizontalOptions="FillAndExpand" x:Name="Home" Clicked="Home_Clicked" />
-            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor"  />
+            <ImageButton Source="teacher.png" HorizontalOptions="FillAndExpand" x:Name="Instructor" Clicked="DegreePlan_Clicked"  />
         </StackLayout>
     </Grid>
 

@@ -14,9 +14,9 @@ public partial class DetailsCoursePage : ContentPage
 
     }
 
-    private void DegreePlan_Clicked(object sender, EventArgs e)
+    private async void DegreePlan_Clicked(object sender, EventArgs e)
     {
-        
+        await Navigation.PushAsync(new InstructorPage());
 
     }
 
@@ -48,5 +48,38 @@ public partial class DetailsCoursePage : ContentPage
 
     }
 
-  
+    private async void Delete_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as ImageButton;
+        var courseId = (int)button.CommandParameter;
+
+        bool answer = await DisplayAlert("Confirmation", "Are you sure you want to delete this item?", "Yes", "No");
+        if (answer)
+        {
+            // Call the DeleteRecord method in the CoursesRepo
+            App.CoursesRepo.DeleteRecord(courseId);
+
+           
+            ((DetailsCourseViewModel)BindingContext).RefreshData();
+          
+        }
+    }
+
+
+    private async void EDIT_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as ImageButton;
+        var courseId = (int)button.CommandParameter;
+
+        await Navigation.PushAsync(new EditCoursePage(courseId));
+    }
+
+    private async void View_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as ImageButton;
+        int courseId = (int)button.CommandParameter;
+
+        await Navigation.PushAsync(new ViewCoursePage(courseId));
+
+    }
 }
