@@ -33,14 +33,14 @@
                     </Frame>
                     <Label Text=" Start Date" StyleClass="MarginT15"/>
                     <Frame StyleClass="FrameBorder">
-                        <DatePicker  Date="{Binding Courses.StartDate} " x:Name="StartDate"/>
+                        <DatePicker  Date="{Binding Courses.StartDate} " x:Name="StartDate" />
 
                     </Frame>
                     <HorizontalStackLayout Spacing="5" >
 
                         <Label Text="Notification" Margin="10" />
-                        <Switch IsToggled="{Binding Courses.NotificationEnd}" x:Name="notificationEnd"
-                                Toggled="notificationEnd_Toggled"
+                        <Switch IsToggled="{Binding Courses.NotificationStart}" x:Name="notificationStart"
+                                Toggled="notificationStart_Toggled"
                                 
                                 />
 
@@ -58,7 +58,7 @@
                     <HorizontalStackLayout Spacing="5" >
                
                         <Label Text="Notification" Margin="10" />
-                        <Switch IsToggled="{Binding Courses.NotificationStart}" Toggled="Switch_Toggled" />
+                        <Switch IsToggled="{Binding Courses.NotificationsEnd}" Toggled="notificationEnd_Toggled"  x:Name="EndtNoti" />
 
                     </HorizontalStackLayout>
 

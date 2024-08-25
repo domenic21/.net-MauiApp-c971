@@ -103,56 +103,15 @@ public partial class EditCoursePage : ContentPage
     }
 
     //notifications switch
-    private void Switch_Toggled(object sender, ToggledEventArgs e)
-    {
-        var currentVm = (EditViewModel)BindingContext;
 
-        int notificationId = 100 + currentVm.Courses.Id;
-        if (e.Value)
-        {
-            //schedule notification
-            var request = new NotificationRequest
-            {
-                NotificationId = notificationId ,
-                Title = "Course Notification " + currentVm.Courses.Name,
-                Description = $"Course starts on {currentVm.Courses.StartDate:MMMM dd, yyyy} and ends on {currentVm.Courses.EndDate:MMMM dd, yyyy}",
-                Schedule = new NotificationRequestSchedule
-                {
-                    NotifyTime = DateTime.Now.AddSeconds(1)
-                }
-            };
-            LocalNotificationCenter.Current.Show(request);
-        }
-        else
-        {
-            //cancel notification
-            LocalNotificationCenter.Current.Cancel(notificationId);
-        }
-        
-
-
-    }
 
     private void notificationEnd_Toggled(object sender, ToggledEventArgs e)
     {
         var currentVm = (EditViewModel)BindingContext;
 
         int notificationId = 200 + currentVm.Courses.Id;
-        if (e.Value)
-        {
-            //schedule notification
-            /*var request = new NotificationRequest
-            {
-                NotificationId = notificationId,
-                Title = "Course Notification " + currentVm.Courses.Name,
-                Description = $"Course ends on {currentVm.Courses.EndDate:MMMM dd, yyyy}",
-                Schedule = new NotificationRequestSchedule
-                {
-                    NotifyTime = DateTime.Now.AddSeconds(1) 
-                    
-                    
-                }
-            };*/
+        if (e.Value) { 
+      
             var request2 = new NotificationRequest
             {
                 NotificationId = notificationId,
@@ -160,7 +119,7 @@ public partial class EditCoursePage : ContentPage
                 Description = $"Course ends on {currentVm.Courses.EndDate:MMMM dd, yyyy}",
                 Schedule = new NotificationRequestSchedule
                 {
-                    NotifyTime = DateTime.Now.AddSeconds(1)
+                    NotifyTime = currentVm.Courses.EndDate.AddSeconds(1)
 
 
                 }
@@ -170,6 +129,34 @@ public partial class EditCoursePage : ContentPage
             //LocalNotificationCenter.Current.Show(request);
 
             LocalNotificationCenter.Current.Show(request2);
+        }
+        else
+        {
+            //cancel notification
+            LocalNotificationCenter.Current.Cancel(notificationId);
+        }
+
+    }
+
+    private void notificationStart_Toggled(object sender, ToggledEventArgs e)
+    {
+        var currentVm = (EditViewModel)BindingContext;
+
+        int notificationId = 100 + currentVm.Courses.Id;
+        if (e.Value)
+        {
+            //schedule notification
+            var request = new NotificationRequest
+            {
+                NotificationId = notificationId,
+                Title = "Course Notification " + currentVm.Courses.Name,
+                Description = $"Course starts on {currentVm.Courses.StartDate:MMMM dd, yyyy} and ends on {currentVm.Courses.EndDate:MMMM dd, yyyy}",
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = currentVm.Courses.StartDate.AddSeconds(1)
+                }
+            };
+            LocalNotificationCenter.Current.Show(request);
         }
         else
         {

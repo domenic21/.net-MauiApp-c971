@@ -14,10 +14,10 @@ namespace MauiApp_test.Data
             {
                 Name = "Mathematics",
                 CourseCode = "MTH101",
-                InstructorName = "John Doe",
+                InstructorName = "Anika Patel",
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now,
-                Status = "Active",
+                Status = "In Progress",
                 Notes = "This is a dummy course",
            
                 Term = 1

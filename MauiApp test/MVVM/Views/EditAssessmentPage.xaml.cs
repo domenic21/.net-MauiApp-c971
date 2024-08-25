@@ -1,7 +1,7 @@
 using MauiApp_test.MVVM.Models;
 using MauiApp_test.MVVM.ViewModels;
+using Plugin.LocalNotification;
 using MauiApp_test.MVVM.Views;
-
 using System;
 
 namespace MauiApp_test.MVVM.Views;
@@ -79,5 +79,59 @@ public partial class EditAssessmentPage : ContentPage
             await Navigation.PopAsync();
         }
         
+    }
+
+    private void StartNoti_Toggled(object sender, ToggledEventArgs e)
+    {
+        var currentVm = (EditAssessmentViewModel)BindingContext;
+
+        int notificationId = 100 + currentVm.Assessments.Id;
+        if (e.Value)
+        {
+            //schedule notification
+            var request = new NotificationRequest
+            {
+                NotificationId = notificationId,
+                Title = "Performance Assessment " + currentVm.Assessments.AssessmentName,
+                Description = $" starts on {currentVm.Assessments.StartDate:MMMM dd, yyyy} ends on {currentVm.Assessments.EndDate:MMMM dd, yyyy} and its due on {currentVm.Assessments.DueDate:MMMM dd, yyyy}",
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = currentVm.Assessments.StartDate.AddSeconds(1)
+                }
+            };
+            LocalNotificationCenter.Current.Show(request);
+        }
+        else
+        {
+            //cancel notification
+            LocalNotificationCenter.Current.Cancel(notificationId);
+        }
+    }
+
+    private void EndNoti_Toggled(object sender, ToggledEventArgs e)
+    {
+        var currentVm = (EditAssessmentViewModel)BindingContext;
+
+        int notificationId = 100 + currentVm.Assessments.Id;
+        if (e.Value)
+        {
+            //schedule notification
+            var request = new NotificationRequest
+            {
+                NotificationId = notificationId,
+                Title = "Performance Assessment " + currentVm.Assessments.AssessmentName,
+                Description = $" starts on {currentVm.Assessments.StartDate:MMMM dd, yyyy} ends on {currentVm.Assessments.EndDate:MMMM dd, yyyy} and its due on {currentVm.Assessments.DueDate:MMMM dd, yyyy}",
+                Schedule = new NotificationRequestSchedule
+                {
+                    NotifyTime = currentVm.Assessments.EndDate.AddSeconds(1)
+                }
+            };
+            LocalNotificationCenter.Current.Show(request);
+        }
+        else
+        {
+            //cancel notification
+            LocalNotificationCenter.Current.Cancel(notificationId);
+        }
     }
 }

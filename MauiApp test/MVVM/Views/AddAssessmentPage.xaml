@@ -61,8 +61,12 @@
             </HorizontalStackLayout>
             <!-- Notifications Section -->
             <HorizontalStackLayout Margin="10,10,0,0" HorizontalOptions="StartAndExpand">
-                <Label Text="Notifications" FontSize="20" TextColor="Blue" />
-                <Switch IsToggled="True" HeightRequest="20"/>
+                <Label Text="Start Notification" FontSize="20" TextColor="Blue" />
+                <Switch IsToggled="{Binding Assessment.StartDateNotifications}" HeightRequest="20" Toggled="StartNoti_Toggled" x:Name="StartNoti"  />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="10,10,0,0" HorizontalOptions="StartAndExpand">
+                <Label Text="End Notification" FontSize="20" TextColor="Blue" />
+                <Switch IsToggled="{Binding Assessment.EndNotifications}" HeightRequest="20" x:Name="EndNoti" Toggled="EndNoti_Toggled" />
             </HorizontalStackLayout>
 
             <Button Text="Save" Clicked="Button_Clicked" Margin="30" />
